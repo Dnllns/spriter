@@ -42,3 +42,6 @@ ignore = ["B008"]
 testpaths = ["tests"]
 python_files = ["test_*.py"]
 addopts = "--cov=src --cov-report=term-missing"
+markers = [
+    "knowledge: Tests for project documentation and state compliance"
+]
