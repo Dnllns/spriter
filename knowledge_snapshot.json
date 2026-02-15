@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-15T22:27:47.046720",
+  "generated_at": "2026-02-15T22:30:00.067546",
   "project": "Spriter",
   "vision": "Advanced Sprite Repository & Simulator (Clean Arch, Full Python)",
   "current_phase": {
@@ -10,9 +10,12 @@
   "knowledge_status": {
     "latest_adr": "0003-storage-strategy.md",
     "pending_items_count": 2,
-    "next_steps_count": 0
+    "next_steps_count": 2
   },
-  "next_steps": [],
+  "next_steps": [
+    "1.  Configure OpenID Connect (OIDC) middleware for **Authentication** in `src/presentation/middleware.py`.",
+    "2.  Refine **API Error Handling** and **Pagination** in `src/presentation/routers.py`."
+  ],
   "pending_features": [
     "**Authentication**: OpenID Connect integration (Keycloak/Auth0/Google). Currently mocked user (`mock_user`).",
     "**API refinement**: Error handling, pagination improvements, filter by tags/author."

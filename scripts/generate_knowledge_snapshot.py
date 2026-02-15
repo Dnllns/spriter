@@ -40,12 +40,20 @@ def parse_state_data():
         if "### Next Actionable Steps" in line:
             in_next = True
             continue
-        if line.startswith("#"):
+        if in_next and line.startswith("#"):
             break
-        if in_next and (
-            line.strip().startswith("- ") or line.strip().startswith("1. ")
-        ):
-            next_steps.append(line.strip())
+        if in_next:
+            stripped = line.strip()
+            if not stripped:
+                continue
+            # Support bullets (- ) or numbered lists (1. , 2., etc)
+            is_list_item = stripped.startswith("- ") or (
+                len(stripped) > 2
+                and stripped[0].isdigit()
+                and stripped[1] in [".", ")"]
+            )
+            if is_list_item:
+                next_steps.append(stripped)
 
     return phase_num, pending_items, next_steps
 
