@@ -19,9 +19,10 @@ A high-performance codebase for managing animated sprites, offering versioning, 
 
 ### Phase 2: Core Domain & API
 - [ ] Implement Sprite Upload/Versioning Logic.
-- [ ] Create REST API (FastAPI) for Sprite Management.
+- [x] Create REST API (FastAPI) for Sprite Management (Basic CRUD).
 - [ ] Implement Storage Service (Local/S3).
 - [ ] Add Authentication (OpenID Connect).
+- [x] Setup PostgreSQL/SQLite and Alembic Migrations.
 
 ### Phase 3: Frontend & Simulator
 - [ ] Design Modern UI (HTML/CSS/JS).
