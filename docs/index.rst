@@ -1,15 +1,23 @@
-Welcome to Spriter's documentation!
-===================================
+spriter
+=======
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Project Knowledge (Vital)
+
+   STATE.md
+   adr/README.md
+   CHANGELOG.md
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Guidelines
+
+   CONTRIBUTING.md
+   DEVELOPMENT_RULES.md
+
+.. toctree::
+   :maxdepth: 2
+   :caption: API
 
    api/modules
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
