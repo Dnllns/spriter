@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-15T22:22:22.633783",
+  "generated_at": "2026-02-15T22:27:47.046720",
   "project": "Spriter",
   "vision": "Advanced Sprite Repository & Simulator (Clean Arch, Full Python)",
   "current_phase": {
@@ -8,13 +8,12 @@
     "consistent": true
   },
   "knowledge_status": {
-    "latest_adr": "0002-use-clean-architecture.md",
-    "pending_items_count": 3,
+    "latest_adr": "0003-storage-strategy.md",
+    "pending_items_count": 2,
     "next_steps_count": 0
   },
   "next_steps": [],
   "pending_features": [
-    "**Storage Service**: Formalize implementation for file storage (S3/MinIO/Local abstraction). Currently barebones in `/tmp`.",
     "**Authentication**: OpenID Connect integration (Keycloak/Auth0/Google). Currently mocked user (`mock_user`).",
     "**API refinement**: Error handling, pagination improvements, filter by tags/author."
   ]

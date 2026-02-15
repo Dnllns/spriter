@@ -14,16 +14,15 @@ This document tracks the current status of the project across different dimensio
 - [x] **In-Memory PoC**: `InMemorySpriteRepository` for fast prototyping.
 - [x] **Persistence Implementation**: `SqlAlchemySpriteRepository` fully implemented and tested.
 - [x] **API Scaffolding**: FastAPI router for basic CRUD (Create, List, Get, Add Version).
+- [x] **Storage Service**: Formalized `StoragePort` and `FileSystemStorageAdapter` (Async/Non-blocking).
 
 ### Pending (Backlog for Phase 2)
-- [ ] **Storage Service**: Formalize implementation for file storage (S3/MinIO/Local abstraction). Currently barebones in `/tmp`.
 - [ ] **Authentication**: OpenID Connect integration (Keycloak/Auth0/Google). Currently mocked user (`mock_user`).
 - [ ] **API refinement**: Error handling, pagination improvements, filter by tags/author.
 
 ### Blocked / Risks
-- **Risk**: File storage needs to be scalable. Using local `/tmp` is risky for anything beyond local dev. Need to prioritize robust storage strategy.
 - **Dependency**: Auth is required before multi-user features.
 
 ### Next Actionable Steps
-1.  Define Storage Interface in `domain` clearly and implement `LocalStorage` properly (with directory structure).
-2.  Add authentication middleware.
+1.  Configure OpenID Connect (OIDC) middleware for **Authentication** in `src/presentation/middleware.py`.
+2.  Refine **API Error Handling** and **Pagination** in `src/presentation/routers.py`.

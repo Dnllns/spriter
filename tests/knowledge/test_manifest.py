@@ -1,4 +1,3 @@
-import pytest
 from pathlib import Path
 
 MANIFEST_REQUIRED_HEADERS = [

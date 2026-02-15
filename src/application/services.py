@@ -1,12 +1,12 @@
 import uuid
 
 from ..domain.entities import Sprite, SpriteVersion
-from ..domain.repositories import SpriteRepository, StorageInterface
+from ..domain.ports import SpriteRepository, StoragePort
 from .dto import AddVersionRequest, CreateSpriteRequest
 
 
 class SpriteService:
-    def __init__(self, repo: SpriteRepository, storage: StorageInterface):
+    def __init__(self, repo: SpriteRepository, storage: StoragePort):
         self.repo = repo
         self.storage = storage
 
@@ -31,7 +31,7 @@ class SpriteService:
 
         # Upload file (simplified path logic)
         path = f"sprites/{sprite_id}/v{len(sprite.versions) + 1}.png"
-        url = await self.storage.upload(file_content, path)
+        url = await self.storage.save(file_content, path)
 
         version = sprite.add_version(
             image_url=url, metadata=request.metadata, changelog=request.changelog

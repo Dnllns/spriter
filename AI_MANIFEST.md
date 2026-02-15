@@ -22,16 +22,16 @@ Any significant change MUST update this stack to maintain context.
 
 ## Roadmap & Phases
 
-### Phase 1: Foundation & Architecture (Current)
+### Phase 1: Foundation & Architecture
 - [x] Initialize Git & Project Structure.
 - [x] Define Domain Models (Sprite, Animation, Frame).
 - [x] Setup Dev Environment (Ruff, Pytest, Sphinx).
 - [x] Implement Knowledge System (ADRs, Roadmap).
 
-### Phase 2: Core Domain & API
+### Phase 2: Core Domain & API (Current)
 - [ ] Implement Sprite Upload/Versioning Logic.
 - [x] Create REST API (FastAPI) for Sprite Management (Basic CRUD).
-- [ ] Implement Storage Service (Local/S3).
+- [x] Implement Storage Service (Local/S3).
 - [ ] Add Authentication (OpenID Connect).
 - [x] Setup PostgreSQL/SQLite and Alembic Migrations.
 

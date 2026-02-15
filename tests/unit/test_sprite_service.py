@@ -1,14 +1,25 @@
 import pytest
-
 from src.application.dto import CreateSpriteRequest
 from src.application.services import SpriteService
-from src.infrastructure.memory_repo import InMemorySpriteRepository, LocalStorageService
+from src.infrastructure.memory_repo import InMemorySpriteRepository
+from src.domain.ports import StoragePort
+
+
+class MockStorage(StoragePort):
+    async def save(self, content: bytes, path: str) -> str:
+        return path
+
+    async def get(self, path: str) -> bytes | None:
+        return None
+
+    async def delete(self, path: str) -> bool:
+        return True
 
 
 @pytest.mark.asyncio
 async def test_create_sprite():
     repo = InMemorySpriteRepository()
-    storage = LocalStorageService()
+    storage = MockStorage()
     service = SpriteService(repo, storage)
 
     request = CreateSpriteRequest(name="Test Sprite", tags=["hero", "rpg"])

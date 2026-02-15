@@ -4,7 +4,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from ..domain.entities import Sprite, SpriteVersion
-from ..domain.repositories import SpriteRepository
+from ..domain.ports import SpriteRepository
 from .models import SpriteModel, SpriteVersionModel
 
 

@@ -1,9 +1,10 @@
 import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+
+from src.domain.entities import Sprite
 from src.infrastructure.database import Base
 from src.infrastructure.repositories import SqlAlchemySpriteRepository
-from src.domain.entities import Sprite
 
 # Use in-memory SQLite for testing
 SQLALCHEMY_DATABASE_URL = "sqlite://"

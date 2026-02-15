@@ -1,7 +1,6 @@
 import uuid
-
 from ..domain.entities import Sprite
-from ..domain.repositories import SpriteRepository, StorageInterface
+from ..domain.ports import SpriteRepository
 
 
 class InMemorySpriteRepository(SpriteRepository):
@@ -22,21 +21,3 @@ class InMemorySpriteRepository(SpriteRepository):
     async def save(self, sprite: Sprite) -> Sprite:
         self._sprites[sprite.id] = sprite
         return sprite
-
-
-class LocalStorageService(StorageInterface):
-    def __init__(self, base_path: str = "/tmp/spriter_uploads"):
-        self.base_path = base_path
-        # Ensure dir exists
-        import os
-
-        os.makedirs(base_path, exist_ok=True)
-
-    async def upload(self, file_content: bytes, filename: str) -> str:
-        import os
-
-        full_path = os.path.join(self.base_path, filename)
-        os.makedirs(os.path.dirname(full_path), exist_ok=True)
-        with open(full_path, "wb") as f:
-            f.write(file_content)
-        return f"file://{full_path}"
