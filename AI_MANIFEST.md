@@ -32,7 +32,7 @@ Any significant change MUST update this stack to maintain context.
 - [ ] Implement Sprite Upload/Versioning Logic.
 - [x] Create REST API (FastAPI) for Sprite Management (Basic CRUD).
 - [x] Implement Storage Service (Local/S3).
-- [ ] Add Authentication (OpenID Connect).
+- [x] Add Authentication (OpenID Connect).
 - [x] Setup PostgreSQL/SQLite and Alembic Migrations.
 
 ### Phase 3: Frontend & Simulator

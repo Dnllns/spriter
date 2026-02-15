@@ -1,6 +1,8 @@
-import pytest
 import shutil
 from pathlib import Path
+
+import pytest
+
 from src.infrastructure.storage import FileSystemStorageAdapter
 
 

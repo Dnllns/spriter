@@ -1,5 +1,8 @@
-from abc import ABC, abstractmethod
 import uuid
+from abc import ABC, abstractmethod
+
+from pydantic import BaseModel
+
 from .entities import Sprite
 
 
@@ -46,5 +49,21 @@ class StoragePort(ABC):
     async def delete(self, path: str) -> bool:
         """
         Delete a file from storage.
+        """
+        pass
+
+
+class User(BaseModel):
+    id: str
+    email: str | None = None
+    username: str | None = None
+
+
+class AuthenticatorPort(ABC):
+    @abstractmethod
+    async def authenticate(self, token: str) -> User:
+        """
+        Verifies the token and returns the authenticated user.
+        Raises exception if invalid.
         """
         pass

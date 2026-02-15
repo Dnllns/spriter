@@ -1,14 +1,17 @@
 import os
+
 import aiofiles
-from ..domain.ports import StoragePort
+
 from ..config import settings
+from ..domain.ports import StoragePort
 
 
 class FileSystemStorageAdapter(StoragePort):
     def __init__(self, base_path: str = settings.STORAGE_PATH):
         self.base_path = base_path
         os.makedirs(base_path, exist_ok=True)
-        # Ensure imports work (config import may not be available yet if dependency order is broken)
+        # Ensure imports work (config import may not be available yet
+        # if dependency order is broken)
 
     async def save(self, file_content: bytes, path: str) -> str:
         """

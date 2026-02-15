@@ -1,4 +1,5 @@
 import uuid
+
 from ..domain.entities import Sprite
 from ..domain.ports import SpriteRepository
 

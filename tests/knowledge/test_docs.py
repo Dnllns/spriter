@@ -1,6 +1,5 @@
-import pytest
-from pathlib import Path
 import re
+from pathlib import Path
 
 VALID_ADR_STATUSES = ["Accepted", "Proposed", "Superseded", "Deprecated", "Rejected"]
 
@@ -37,7 +36,8 @@ def test_adr_compliance():
 
         status = match.group(1)
         assert status in VALID_ADR_STATUSES, (
-            f"ADR {adr_file.name} has invalid status '{status}'. Must be one of {VALID_ADR_STATUSES}"
+            f"ADR {adr_file.name} has invalid status '{status}'. "
+            f"Must be one of {VALID_ADR_STATUSES}"
         )
 
 

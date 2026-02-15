@@ -1,8 +1,9 @@
 import pytest
+
 from src.application.dto import CreateSpriteRequest
 from src.application.services import SpriteService
-from src.infrastructure.memory_repo import InMemorySpriteRepository
 from src.domain.ports import StoragePort
+from src.infrastructure.memory_repo import InMemorySpriteRepository
 
 
 class MockStorage(StoragePort):

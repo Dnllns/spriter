@@ -9,7 +9,10 @@ class Settings(BaseSettings):
     # Default to SQLite for easy local dev, pluggable to Postgres
     STORAGE_PATH: str = "/tmp/spriter_uploads"
 
-    # Auth (Placeholder for Phase 2b)
+    # Auth (OIDC)
+    OIDC_ISSUER: str = "https://your-oidc-provider.com"
+    OIDC_AUDIENCE: str = "spriter-api"
+
     SECRET_KEY: str = "supersecretkey"
     ALGORITHM: str = "HS256"
 
