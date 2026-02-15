@@ -1,4 +1,3 @@
-import pytest
 from pathlib import Path
 
 REQUIRED_STATE_HEADERS = [
@@ -42,15 +41,3 @@ def test_next_actionable_steps_content():
                 break
 
     assert has_items, "'Next Actionable Steps' section must contain at least one task."
-
-
-def test_phase_current_matches_manifest():
-    """Ensure STATE.md 'Phase:' matches AI_MANIFEST.md's (Current) Phase."""
-    state_content = get_state_content()
-    manifest_content = Path("AI_MANIFEST.md").read_text(encoding="utf-8")
-
-    # Extract phase number from STATE.md
-    # e.g. "## Phase: 2 - Core Domain" -> "Phase: 2"
-    pass
-    # This might be tricky to implement perfectly with regex, skipping exact check for now
-    # but could be improved.
