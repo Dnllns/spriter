@@ -16,6 +16,9 @@ This document tracks the current status of the project across different dimensio
 - [x] **API Scaffolding**: FastAPI router for basic CRUD (Create, List, Get, Add Version).
 - [x] **Storage Service**: Formalized `StoragePort` and `FileSystemStorageAdapter` (Async/Non-blocking).
 - [x] **Authentication**: OIDC-ready architecture with `AuthenticatorPort` and `MockAuthenticator` (for dev).
+- [x] **CI/CD**: GitHub Actions workflows for Testing, Linting, Security Scanning (Bandit), and Type Checking (MyPy).
+- [x] **Documentation**: Automated Sphinx documentation build and deployment to GitHub Pages.
+- [x] **Versioning**: Bumped to `0.2.0` with strict semantic versioning.
 
 ### Pending (Backlog for Phase 2)
 - [ ] **OIDC Provider Setup**: Integration with a real provider (Keycloak/Auth0) in a staging environment.
