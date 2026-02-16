@@ -1,4 +1,3 @@
-
 from src.domain.entities import Animation, AnimationType, Frame, Sprite
 
 
