@@ -3,7 +3,7 @@
 
 This document tracks the current status of the project across different dimensions.
 
-## Phase: 2 - Core Domain & API (In Progress)
+## Phase: 3 - Frontend & Simulator (Starting)
 
 ### Completed (Done)
 - [x] **Project Structure**: Clean Architecture folders in `src/`.
@@ -24,9 +24,11 @@ This document tracks the current status of the project across different dimensio
 - [x] **Security**: Enabled `CodeQL` scanning and `Dependabot` updates.
 - [x] **Community**: Added standardized Issue/PR templates.
 
-### Pending (Backlog for Phase 2)
-- [ ] **OIDC Provider Setup**: Integration with a real provider (Keycloak/Auth0) in a staging environment.
-- [ ] **API refinement**: Error handling, pagination improvements, filter by tags/author.
+### Pending (Backlog for Phase 3)
+- [ ] **UI Design**: Wireframes and HTML/CSS structure for the main dashboard.
+- [ ] **Simulator Engine**: Core JavaScript/Canvas logic for sprite animation.
+- [ ] **Simulator API**: Backend endpoints to serve run-time sprite data.
+- [ ] **Player Component**: Reusable web component for playback.
 
 ### Blocked / Risks
 - **Dependency**: Real OIDC credentials needed for production.

@@ -28,8 +28,8 @@ Any significant change MUST update this stack to maintain context.
 - [x] Setup Dev Environment (`uv` toolchain, Ruff, Pytest, Sphinx).
 - [x] Implement Knowledge System (ADRs, Roadmap).
 
-### Phase 2: Core Domain & API (Current)
-- [ ] Implement Sprite Upload/Versioning Logic.
+### Phase 2: Core Domain & API (Done)
+- [x] Implement Sprite Upload/Versioning Logic.
 - [x] Create REST API (FastAPI) for Sprite Management (Basic CRUD).
 - [x] Implement Storage Service (Local/S3).
 - [x] Add Authentication (OpenID Connect).
@@ -42,8 +42,8 @@ Any significant change MUST update this stack to maintain context.
 
 ### Phase 4: Community & Advanced Features
 - [ ] Comments, Ratings, Tags.
-- [ ] Documentation Portal (Sphinx).
-- [ ] CI/CD Pipelines (GitHub Actions/GitLab CI).
+- [x] Documentation Portal (Sphinx).
+- [x] CI/CD Pipelines (GitHub Actions/GitLab CI).
 
 ## Current Context
-Project initialized. Directory structure being created.
+Phase 2 completed. Core backend, API, storage, and authentication are operational. CI/CD and Versioning are automated with `uv`. Ready to start Phase 3: Frontend & Simulator.
