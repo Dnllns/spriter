@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-02-16
+
+### Fixed
+- **CI/CD**: Fixed `PYTHONPATH` issues in CI, Knowledge Check, and Docs workflows.
+- **Dependencies**: Upgraded deprecated GitHub Actions (v3 -> v4).
+
 ## [0.2.0] - 2026-02-16
 
 ### Added

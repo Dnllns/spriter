@@ -1,6 +1,6 @@
 [project]
 name = "spriter"
-version = "0.2.0"
+version = "0.2.1"
 description = "Advanced Sprite Repository & Simulator"
 authors = [{name = "Antigravity", email = "antigravity@google.com"}]
 dependencies = [

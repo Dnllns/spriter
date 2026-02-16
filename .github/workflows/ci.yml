@@ -20,6 +20,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install ruff
       - name: Lint with Ruff
+        env:
+          PYTHONPATH: .
         run: |
           ruff check .
           ruff format --check .
@@ -53,6 +55,8 @@ jobs:
           # Install storage dependencies for testing if needed
           pip install minio boto3 python-multipart
       - name: Test with pytest
+        env:
+          PYTHONPATH: .
         run: |
           pytest --cov=src --cov-report=xml
       - name: Upload coverage to Codecov
