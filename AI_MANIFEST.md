@@ -25,7 +25,7 @@ Any significant change MUST update this stack to maintain context.
 ### Phase 1: Foundation & Architecture
 - [x] Initialize Git & Project Structure.
 - [x] Define Domain Models (Sprite, Animation, Frame).
-- [x] Setup Dev Environment (Ruff, Pytest, Sphinx).
+- [x] Setup Dev Environment (`uv` toolchain, Ruff, Pytest, Sphinx).
 - [x] Implement Knowledge System (ADRs, Roadmap).
 
 ### Phase 2: Core Domain & API (Current)
