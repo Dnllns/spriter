@@ -27,6 +27,7 @@ This document tracks the current status of the project across different dimensio
 - [x] **Simulator Engine**: Defined `Animation` / `Frame` entities and `SimulatorService` domain logic.
 - [x] **Simulator API**: POST /simulate endpoint implemented and tested.
 - [x] **API Robustness**: Added strict pagination validation and global error handling [HU-005].
+- [x] **Observability**: Implemented Structured Logging with `structlog` and Request ID tracing [HU-006][ADR-0007].
 
 ### Pending (Backlog for Phase 3)
 - [ ] **UI Design**: Wireframes and HTML/CSS structure for the main dashboard.

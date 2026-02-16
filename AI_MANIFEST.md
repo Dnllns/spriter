@@ -18,7 +18,8 @@ Any significant change MUST update this stack to maintain context.
 1.  **Clean Architecture**: Strict separation of concerns (Domain < Application < Infrastructure).
 2.  **Quality First**: 100% Test Coverage (Unit, Integration, E2E), strict linting (Ruff), type safety.
 3.  **Automation**: CI/CD for testing, docs, and versioning.
-4.  **Knowledge Driven**: This file and `docs/` serve as the source of truth for project state.
+4.  **Observability**: Structured Logging and request tracing for efficient debugging.
+5.  **Knowledge Driven**: This file and `docs/` serve as the source of truth for project state.
 
 ## Roadmap & Phases
 
@@ -47,7 +48,7 @@ Any significant change MUST update this stack to maintain context.
 - [x] CI/CD Pipelines (GitHub Actions/GitLab CI).
 
 ### Current Context
-Phase 3 (Frontend & Simulator) is active. The backend core for simuation and API robustness [HU-005] are done. We are ready to start the **Frontend Dashboard**.
+Phase 3 (Frontend & Simulator) is active. Backend core, API robustness [HU-005], and Structured Logging [HU-006] are done. We are ready to start the **Frontend Dashboard**.
 
 ### Current State Verification
 - [x] All knowledge tests pass.

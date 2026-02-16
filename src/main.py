@@ -1,10 +1,18 @@
+import time
+import uuid
+
+import structlog
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from .domain.exceptions import SpriteNotFoundError, UnauthorizedError
+from .logging_config import setup_logging
 from .presentation.routers import router as sprite_router
 from .presentation.simulator_router import router as simulator_router
+
+setup_logging()
+logger = structlog.get_logger()
 
 app = FastAPI(
     title="Spriter API",
@@ -25,6 +33,38 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+@app.middleware("http")
+async def logging_middleware(request: Request, call_next):
+    request_id = str(uuid.uuid4())
+    structlog.contextvars.clear_contextvars()
+    structlog.contextvars.bind_contextvars(request_id=request_id)
+
+    start_time = time.perf_counter()
+
+    try:
+        response = await call_next(request)
+    except Exception as e:
+        logger.exception("unhandled_exception", error=str(e))
+        response = JSONResponse(
+            status_code=500,
+            content={"detail": "Internal Server Error"},
+        )
+
+    process_time = time.perf_counter() - start_time
+    status_code = response.status_code
+    logger.info(
+        "http_request",
+        method=request.method,
+        path=request.url.path,
+        status=status_code,
+        duration=f"{process_time:.4f}s",
+    )
+
+    response.headers["X-Request-ID"] = request_id
+    return response
+
+
 app.include_router(sprite_router, prefix="/api/v1")
 app.include_router(simulator_router, prefix="/api/v1")
 
@@ -33,6 +73,7 @@ app.include_router(simulator_router, prefix="/api/v1")
 async def sprite_not_found_exception_handler(
     request: Request, exc: SpriteNotFoundError
 ):
+    logger.warning("sprite_not_found", error=str(exc))
     return JSONResponse(
         status_code=404,
         content={"detail": str(exc)},
@@ -41,6 +82,7 @@ async def sprite_not_found_exception_handler(
 
 @app.exception_handler(UnauthorizedError)
 async def unauthorized_exception_handler(request: Request, exc: UnauthorizedError):
+    logger.warning("unauthorized_access", error=str(exc))
     return JSONResponse(
         status_code=403,
         content={"detail": str(exc)},

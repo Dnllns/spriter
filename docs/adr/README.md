@@ -12,3 +12,4 @@ This log records the significant architectural decisions made during the project
 | [0004](0004-authentication-strategy.md) | Authentication Strategy | Accepted | 2026-02-15 |
 | [0005](0005-use-uv-for-dependency-management.md) | Adoption of uv for Dependency Management | Accepted | 2026-02-16 |
 | [0006](0006-global-error-handling.md) | Global Error Handling and Domain Exceptions | Accepted | 2026-02-16 |
+| [0007](0007-structured-logging.md) | Adoption of Structured Logging with Structlog | Accepted | 2026-02-16 |
