@@ -195,5 +195,15 @@ Una HU se considera cerrada solo si:
 > **GitHub es el registro de hechos.**
 > **Las HU definen el porqué.**
 > **Los AC definen el qué.**
-> **Los tests demuestran el hecho.**
-> **Los ADR explican las decisiones.**
+---
+
+## 13. Project Memory Stack (Cognitive Persistence)
+
+Este proyecto mantiene una "memoria" estricta para colaboradores humanos y Pautas de IA.
+
+* **`AI_MANIFEST.md`**: Visión inmutable.
+* **`docs/STATE.md`**: Estado actual (Dashboard).
+* **`docs/adr/`**: Registro de decisiones.
+* **`docs/historias/`**: Definición de valor (Why).
+
+> **Mantén estos archivos sincronizados.**
