@@ -4,7 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-## [0.2.2] - 2026-02-16
+## [0.2.4] - 2026-02-16
+
+### Changed
+- **CI/CD**: Fully migrated all workflows (CI, Docs, Release) to use `uv` for dependency management and execution, improving speed and caching.
+- **Dependencies**: Removed `docs/requirements.txt` in favor of `pyproject.toml` `docs` group.
+
+## [0.2.3] - 2026-02-16
 
 ### Fixed
 - **Dependencies**: Added `[project.optional-dependencies]` to `pyproject.toml` to fix `pip install .[test]` in CI.

@@ -1,6 +1,6 @@
 [project]
 name = "spriter"
-version = "0.2.2"
+version = "0.2.4"
 description = "Advanced Sprite Repository & Simulator"
 authors = [{name = "Antigravity", email = "antigravity@google.com"}]
 dependencies = [
@@ -15,6 +15,7 @@ dependencies = [
     # Auth
     "python-jose[cryptography]>=3.3.0",
     "httpx>=0.24.0",
+    "aiofiles>=23.0.0",
 ]
 requires-python = ">=3.11"
 
@@ -31,10 +32,21 @@ dev = [
     "bandit>=1.7.0",
     "pre-commit>=3.0.0",
 ]
+docs = [
+    "sphinx>=7.0.0",
+    "furo>=2024.0.0",
+    "sphinx-autodoc-typehints>=1.24.0",
+    "myst-parser>=2.0.0",
+    "sphinx-copybutton>=0.5.2",
+    "sphinx-design>=0.5.0",
+]
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/application", "src/domain", "src/infrastructure", "src/presentation", "src/config.py", "src/main.py", "src/dependencies.py"]
 
 [tool.ruff]
 line-length = 88
