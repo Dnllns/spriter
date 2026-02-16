@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.2.6] - 2026-02-16
+
+### Fixed
+- **CI**: Used `uv run python -m pytest` to enforce correct Python path resolution in tests.
+
 ## [0.2.5] - 2026-02-16
 
 ### Fixed
