@@ -1,9 +1,9 @@
 import uuid
 from datetime import UTC, datetime
+from typing import List, Optional
 
 from sqlalchemy import (
     JSON,
-    Column,
     DateTime,
     ForeignKey,
     Integer,
@@ -12,7 +12,7 @@ from sqlalchemy import (
 from sqlalchemy import (
     Enum as SAEnum,
 )
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from ..domain.entities import SpriteStatus
 from .database import Base
@@ -21,31 +21,43 @@ from .database import Base
 class SpriteModel(Base):
     __tablename__ = "sprites"
 
-    id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
-    name = Column(String, nullable=False)
-    description = Column(String, nullable=True)
-    author_id = Column(String, nullable=False)
-    status = Column(SAEnum(SpriteStatus), default=SpriteStatus.DRAFT)
-    tags = Column(JSON, default=list)
-    created_at = Column(DateTime, default=lambda: datetime.now(UTC))
-    updated_at = Column(
+    id: Mapped[str] = mapped_column(
+        String, primary_key=True, default=lambda: str(uuid.uuid4())
+    )
+    name: Mapped[str] = mapped_column(String, nullable=False)
+    description: Mapped[Optional[str]] = mapped_column(String, nullable=True)
+    author_id: Mapped[str] = mapped_column(String, nullable=False)
+    status: Mapped[SpriteStatus] = mapped_column(
+        SAEnum(SpriteStatus), default=SpriteStatus.DRAFT
+    )
+    tags: Mapped[List[str]] = mapped_column(JSON, default=list)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime, default=lambda: datetime.now(UTC)
+    )
+    updated_at: Mapped[datetime] = mapped_column(
         DateTime,
         default=lambda: datetime.now(UTC),
         onupdate=lambda: datetime.now(UTC),
     )
 
-    versions = relationship("SpriteVersionModel", back_populates="sprite")
+    versions: Mapped[List["SpriteVersionModel"]] = relationship(
+        "SpriteVersionModel", back_populates="sprite"
+    )
 
 
 class SpriteVersionModel(Base):
     __tablename__ = "sprite_versions"
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    sprite_id = Column(String, ForeignKey("sprites.id"))
-    version_number = Column(Integer, nullable=False)
-    image_url = Column(String, nullable=False)
-    metadata_json = Column(JSON, default=dict)
-    changelog = Column(String, nullable=True)
-    created_at = Column(DateTime, default=lambda: datetime.now(UTC))
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    sprite_id: Mapped[str] = mapped_column(String, ForeignKey("sprites.id"))
+    version_number: Mapped[int] = mapped_column(Integer, nullable=False)
+    image_url: Mapped[str] = mapped_column(String, nullable=False)
+    metadata_json: Mapped[dict] = mapped_column(JSON, default=dict)
+    changelog: Mapped[Optional[str]] = mapped_column(String, nullable=True)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime, default=lambda: datetime.now(UTC)
+    )
 
-    sprite = relationship("SpriteModel", back_populates="versions")
+    sprite: Mapped["SpriteModel"] = relationship(
+        "SpriteModel", back_populates="versions"
+    )

@@ -76,3 +76,9 @@ filterwarnings = [
     "ignore::UserWarning",
 ]
 
+[dependency-groups]
+dev = [
+    "types-aiofiles>=25.1.0.20251011",
+    "types-python-jose>=3.5.0.20250531",
+]
+
