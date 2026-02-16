@@ -41,10 +41,18 @@ class OIDCAuthenticatorAdapter(AuthenticatorPort):
                 issuer=self.issuer,
                 algorithms=["RS256"],
             )
+            sub = payload.get("sub")
+            if not sub:
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail="Token missing 'sub' claim",
+                )
             return User(
-                id=payload.get("sub"),
-                email=payload.get("email"),
-                username=payload.get("preferred_username") or payload.get("name"),
+                id=str(sub),
+                email=payload.get("email") or "",
+                username=payload.get("preferred_username")
+                or payload.get("name")
+                or "unknown",
             )
         except JWTError as e:
             raise HTTPException(

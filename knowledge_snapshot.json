@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-16T22:17:59.389797",
+  "generated_at": "2026-02-16T22:38:25.275211",
   "project": "Spriter",
   "vision": "Advanced Sprite Repository & Simulator (Clean Arch, Full Python)",
   "current_phase": {
@@ -8,13 +8,13 @@
     "consistent": true
   },
   "knowledge_status": {
-    "latest_adr": "0004_use_uv_for_dependency_management.md",
+    "latest_adr": "0007-structured-logging.md",
     "pending_items_count": 3,
     "next_steps_count": 2
   },
   "next_steps": [
-    "1.  Implement **API Error Handling** and **Pagination** [HU-005] in `src/presentation/routers.py`.",
-    "2.  Design and implement the **Frontend Dashboard** (Phase 3 UI)."
+    "1.  Design and implement the `Frontend Dashboard` (Phase 3 UI).",
+    "2.  Implement `Simulator Engine (Frontend)` for animation previews."
   ],
   "pending_features": [
     "**UI Design**: Wireframes and HTML/CSS structure for the main dashboard.",
