@@ -29,24 +29,31 @@ This project uses modern Python tooling:
 
 ### Setup
 
-```bash
-# Create virtual environment
-python -m venv .venv
-source .venv/bin/activate
+The project uses `uv` for ultra-fast dependency management.
 
-# Install dependencies
-pip install -e .[dev]
+```bash
+# Install uv (if not installed)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Sync dependencies (creates .venv automatically)
+uv sync --all-extras
 ```
 
 ### Running Tests
 
 ```bash
-pytest
+uv run pytest
+```
+
+### Linting & Formatting
+
+```bash
+uv run ruff check .
+uv run ruff format .
 ```
 
 ### Building Docs
 
 ```bash
-cd docs
-make html
+uv run sphinx-build -b html docs/ docs/_build/html
 ```

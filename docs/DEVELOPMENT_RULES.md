@@ -9,13 +9,21 @@ These rules are non-negotiable for all contributions to Spriter.
 - **Infrastructure Layer**: Implements interfaces defined in Domain. Can use external libraries (SQLAlchemy, boto3, etc.).
 - **Presentation Layer**: Entry points (FastAPI routers, CLI). Depends services in Application.
 
-## 2. Code Quality & Testing
+## 2. Toolchain: uv (Mandatory)
+
+- **Dependency Management**: Use `uv` strictly. Do not use `pip` directly.
+  - Add dependency: `uv add <package>`
+  - Add dev dependency: `uv add --dev <package>`
+  - Sync environment: `uv sync --all-extras`
+- **Execution**: Run tools via `uv run` (e.g., `uv run pytest`).
+- **Lockfile**: `uv.lock` must be committed and kept in sync.
+
+## 3. Code Quality & Testing
 
 - **100% Test Coverage Target**: New features must include Unit and Integration tests.
-- **Linting**: No code is merged with linting errors (`ruff check .`).
-- **Formatting**: Code must be formatted with `ruff format .`.
-- **Type Hints**: All function signatures must have type hints. Use Python 3.11+ syntax (`str | None`, `list[int]`).
-
+- **Linting**: No code is merged with linting errors (`uv run ruff check .`).
+- **Formatting**: Code must be formatted with `uv run ruff format .`.
+- **Type Hints**: All function signatures must have type hints. Use Python 3.11+ syntax.
 ## 3. Technology Stack specifics
 
 - **Pydantic V2**: Use V2 models and syntax strictly.

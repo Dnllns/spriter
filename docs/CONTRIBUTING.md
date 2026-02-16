@@ -23,8 +23,12 @@ We follow the [Conventional Commits](https://www.conventionalcommits.org/) speci
 
 ## Pull Request Process
 
-1.  **Update Tests**: Ensure `pytest` passes.
-2.  **Lint**: Run `ruff check .` and fix errors.
+### Setup and Contribution
+
+1.  **Install uv**: Follow instructions at [astral.sh/uv](https://astral.sh/uv).
+2.  **Sync**: `uv sync --all-extras` (will setup `.venv` automatically).
+3.  **Update Tests**: Ensure `uv run pytest` passes.
+4.  **Lint**: Run `uv run ruff check .` and fix errors.
 3.  **Update Docs**: If you changed architecture, add an ADR. If you completed a Phase item, update `AI_MANIFEST.md` and `docs/STATE.md`.
 4.  **Description**: In your PR description, explain clearly *why* this change updates the project state.
 
