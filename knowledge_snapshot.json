@@ -1,23 +1,25 @@
 {
-  "generated_at": "2026-02-16T21:04:25.335304",
+  "generated_at": "2026-02-16T22:10:31.171102",
   "project": "Spriter",
   "vision": "Advanced Sprite Repository & Simulator (Clean Arch, Full Python)",
   "current_phase": {
-    "manifest_phase": "2",
-    "state_phase": "2",
+    "manifest_phase": "3",
+    "state_phase": "3",
     "consistent": true
   },
   "knowledge_status": {
-    "latest_adr": "0004-authentication-strategy.md",
-    "pending_items_count": 2,
+    "latest_adr": "0004_use_uv_for_dependency_management.md",
+    "pending_items_count": 4,
     "next_steps_count": 2
   },
   "next_steps": [
-    "1.  Define **Simulator Domain Core** (Phase 3 transition): Animation frames, frame rates, and preview logic in `src/domain/simulator.py`.",
+    "1.  Implement **Simulator API** endpoints: `POST /simulate` to calculate frame for given time.",
     "2.  Implement **API Error Handling** and **Pagination** in `src/presentation/routers.py`."
   ],
   "pending_features": [
-    "**OIDC Provider Setup**: Integration with a real provider (Keycloak/Auth0) in a staging environment.",
-    "**API refinement**: Error handling, pagination improvements, filter by tags/author."
+    "**UI Design**: Wireframes and HTML/CSS structure for the main dashboard.",
+    "**Simulator Engine**: Core JavaScript/Canvas logic for sprite animation.",
+    "**Simulator API**: Backend endpoints to serve run-time sprite data.",
+    "**Player Component**: Reusable web component for playback."
   ]
 }

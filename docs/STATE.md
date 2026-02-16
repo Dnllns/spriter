@@ -25,17 +25,16 @@ This document tracks the current status of the project across different dimensio
 - [x] **Community**: Added standardized Issue/PR templates (HU/AC focused).
 - [x] **Process**: Enforced Strict Development Philosophy (HU/AC/ADR/uv) in `CONTRIBUTING.md`.
 - [x] **Simulator Engine**: Defined `Animation` / `Frame` entities and `SimulatorService` domain logic.
+- [x] **Simulator API**: POST /simulate endpoint implemented and tested.
 
 ### Pending (Backlog for Phase 3)
 - [ ] **UI Design**: Wireframes and HTML/CSS structure for the main dashboard.
-- [ ] **Simulator Engine**: Core JavaScript/Canvas logic for sprite animation.
-- [ ] **Simulator API**: Backend endpoints to serve run-time sprite data.
+- [ ] **Simulator Engine (Frontend)**: Core JavaScript/Canvas logic for sprite animation.
 - [ ] **Player Component**: Reusable web component for playback.
 
 ### Blocked / Risks
 - **Dependency**: Real OIDC credentials needed for production.
 
 ### Next Actionable Steps
-1.  Implement **Simulator API** endpoints: `POST /simulate` to calculate frame for given time.
-2.  Implement **API Error Handling** and **Pagination** in `src/presentation/routers.py`.
-
+1.  Implement **API Error Handling** and **Pagination** in `src/presentation/routers.py`.
+2.  Design and implement the **Frontend Dashboard** (Phase 3 UI).

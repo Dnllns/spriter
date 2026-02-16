@@ -35,7 +35,7 @@ Any significant change MUST update this stack to maintain context.
 - [x] Add Authentication (OpenID Connect).
 - [x] Setup PostgreSQL/SQLite and Alembic Migrations.
 
-### Phase 3: Frontend & Simulator
+### Phase 3: Frontend & Simulator (Current)
 - [ ] Design Modern UI (HTML/CSS/JS).
 - [ ] Implement Sprite Simulator (Canvas/JS interacting with Python Backend).
 - [ ] Build "Player" for animations.

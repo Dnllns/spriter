@@ -1,9 +1,7 @@
 import uuid
 from abc import ABC, abstractmethod
 
-from pydantic import BaseModel
-
-from .entities import Sprite
+from .entities import Sprite, User
 
 
 class SpriteRepository(ABC):
@@ -51,12 +49,6 @@ class StoragePort(ABC):
         Delete a file from storage.
         """
         pass
-
-
-class User(BaseModel):
-    id: str
-    email: str | None = None
-    username: str | None = None
 
 
 class AuthenticatorPort(ABC):
