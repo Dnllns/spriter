@@ -19,6 +19,12 @@ class AnimationType(StrEnum):
     CUSTOM = "custom"
 
 
+class User(BaseModel):
+    id: str
+    email: str | None = None
+    username: str | None = None
+
+
 class Frame(BaseModel):
     id: uuid.UUID = Field(default_factory=uuid.uuid4)
     index: int
