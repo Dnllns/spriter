@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.2.2] - 2026-02-16
+
+### Fixed
+- **Dependencies**: Added `[project.optional-dependencies]` to `pyproject.toml` to fix `pip install .[test]` in CI.
+- **CI**: Fixed `Test` job installing non-existent dependency group.
+
 ## [0.2.1] - 2026-02-16
 
 ### Fixed

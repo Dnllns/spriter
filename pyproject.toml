@@ -1,6 +1,6 @@
 [project]
 name = "spriter"
-version = "0.2.1"
+version = "0.2.2"
 description = "Advanced Sprite Repository & Simulator"
 authors = [{name = "Antigravity", email = "antigravity@google.com"}]
 dependencies = [
@@ -17,6 +17,20 @@ dependencies = [
     "httpx>=0.24.0",
 ]
 requires-python = ">=3.11"
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.1.0",
+    "httpx>=0.24.0",
+]
+dev = [
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+    "bandit>=1.7.0",
+    "pre-commit>=3.0.0",
+]
 
 [build-system]
 requires = ["hatchling"]
