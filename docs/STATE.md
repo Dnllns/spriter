@@ -17,7 +17,7 @@ This document tracks the current status of the project across different dimensio
 - [x] **Storage Service**: Formalized `StoragePort` and `FileSystemStorageAdapter` (Async/Non-blocking).
 - [x] **Authentication**: OIDC-ready architecture with `AuthenticatorPort` and `MockAuthenticator` (for dev).
 - [x] **CI/CD**: GitHub Actions workflows for Testing, Linting, Security Scanning (Bandit), and Type Checking (MyPy).
-- [x] **Documentation**: Automated Sphinx documentation build and deployment to GitHub Pages.
+- [x] **Documentation**: Automated Sphinx documentation build and deployment to GitHub Pages (Verified Live).
 - [x] **Versioning**: Bumped to `0.2.6` with strict semantic versioning.
 - [x] **Releases**: Automated GitHub Releases with `uv build` artifacts (v0.2.6 deployed).
 - [x] **Toolchain**: Migrated to `uv` for all workflows and local development.
