@@ -1,6 +1,7 @@
 import uuid
 
 from ..domain.entities import Sprite, SpriteVersion
+from ..domain.exceptions import SpriteNotFoundError
 from ..domain.ports import SpriteRepository, StoragePort
 from .dto import AddVersionRequest, CreateSpriteRequest
 
@@ -27,7 +28,7 @@ class SpriteService:
     ) -> SpriteVersion | None:
         sprite = await self.repo.get(sprite_id)
         if not sprite:
-            return None
+            raise SpriteNotFoundError(sprite_id)
 
         # Upload file (simplified path logic)
         path = f"sprites/{sprite_id}/v{len(sprite.versions) + 1}.png"
@@ -40,8 +41,11 @@ class SpriteService:
         await self.repo.save(sprite)
         return version
 
-    async def get_sprite(self, sprite_id: uuid.UUID) -> Sprite | None:
-        return await self.repo.get(sprite_id)
+    async def get_sprite(self, sprite_id: uuid.UUID) -> Sprite:
+        sprite = await self.repo.get(sprite_id)
+        if not sprite:
+            raise SpriteNotFoundError(sprite_id)
+        return sprite
 
     async def list_sprites(self, limit: int = 10, offset: int = 0) -> list[Sprite]:
         return await self.repo.list(limit, offset)

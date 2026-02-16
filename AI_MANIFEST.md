@@ -47,9 +47,9 @@ Any significant change MUST update this stack to maintain context.
 - [x] CI/CD Pipelines (GitHub Actions/GitLab CI).
 
 ### Current Context
-Phase 3 (Frontend & Simulator) is active. The backend core for simuation is done. We are currently in branch `refactor/HU-005-api-robustness-pagination` working on **HU-005** (API Robustness and Pagination).
+Phase 3 (Frontend & Simulator) is active. The backend core for simuation and API robustness [HU-005] are done. We are ready to start the **Frontend Dashboard**.
 
 ### Current State Verification
 - [x] All knowledge tests pass.
 - [x] Process HU/AC/PR/ADR documented in `CONTRIBUTING.md`.
-- [x] Active Task: Implement pagination logic and global error handling for `SpriteService` outputs.
+- [x] Active Task: Design and implement the **Frontend Dashboard** (Phase 3 UI).

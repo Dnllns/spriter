@@ -1,11 +1,21 @@
 import uuid
 
-from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile, status
+from fastapi import (
+    APIRouter,
+    Depends,
+    File,
+    Form,
+    HTTPException,
+    Query,
+    UploadFile,
+    status,
+)
 
 from ..application.dto import AddVersionRequest, CreateSpriteRequest
 from ..application.services import SpriteService
 from ..dependencies import get_current_user, get_service
 from ..domain.entities import Sprite, SpriteVersion, User
+from ..domain.exceptions import UnauthorizedError
 
 router = APIRouter(tags=["sprites"])
 
@@ -21,7 +31,9 @@ async def create_sprite(
 
 @router.get("/sprites", response_model=list[Sprite])
 async def list_sprites(
-    limit: int = 10, offset: int = 0, service: SpriteService = Depends(get_service)
+    limit: int = Query(10, gt=0, le=100),
+    offset: int = Query(0, ge=0),
+    service: SpriteService = Depends(get_service),
 ):
     return await service.list_sprites(limit, offset)
 
@@ -30,10 +42,7 @@ async def list_sprites(
 async def get_sprite(
     sprite_id: uuid.UUID, service: SpriteService = Depends(get_service)
 ):
-    sprite = await service.get_sprite(sprite_id)
-    if not sprite:
-        raise HTTPException(status_code=404, detail="Sprite not found")
-    return sprite
+    return await service.get_sprite(sprite_id)
 
 
 @router.post(
@@ -52,14 +61,8 @@ async def add_sprite_version(
     import json
 
     sprite = await service.get_sprite(sprite_id)
-    if not sprite:
-        raise HTTPException(status_code=404, detail="Sprite not found")
-
     if sprite.author_id != current_user.id:
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="You are not allowed to update this sprite",
-        )
+        raise UnauthorizedError("You are not allowed to update this sprite")
 
     try:
         meta_dict = json.loads(metadata)
@@ -70,6 +73,4 @@ async def add_sprite_version(
     request = AddVersionRequest(metadata=meta_dict, changelog=changelog)
 
     version = await service.add_sprite_version(sprite_id, file_content, request)
-    if not version:
-        raise HTTPException(status_code=404, detail="Sprite not found")
     return version
