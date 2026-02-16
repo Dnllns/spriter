@@ -38,5 +38,5 @@ This document tracks the current status of the project across different dimensio
 - **Dependency**: Real OIDC credentials needed for production.
 
 ### Next Actionable Steps
-1.  Design and implement the **Frontend Dashboard** (Phase 3 UI).
-2.  Implement **Simulator Engine (Frontend)** for animation previews.
+1.  Design and implement the `Frontend Dashboard` (Phase 3 UI).
+2.  Implement `Simulator Engine (Frontend)` for animation previews.
