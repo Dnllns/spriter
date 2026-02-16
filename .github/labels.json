@@ -1,0 +1,52 @@
+[
+    {
+        "name": "HU",
+        "color": "7057ff",
+        "description": "Etiqueta para Historias de Usuario (e.g., HU:023)"
+    },
+    {
+        "name": "AC",
+        "color": "008672",
+        "description": "Etiqueta para Criterios de Aceptacion (e.g., AC:023-01)"
+    },
+    {
+        "name": "estado:en_progreso",
+        "color": "fbca04",
+        "description": "Trabajo en curso"
+    },
+    {
+        "name": "estado:bloqueado",
+        "color": "d93f0b",
+        "description": "Impedimento bloqueante"
+    },
+    {
+        "name": "estado:listo",
+        "color": "0e8a16",
+        "description": "Listo para merge/review"
+    },
+    {
+        "name": "tipo:feature",
+        "color": "a2eeef",
+        "description": "Nueva funcionalidad"
+    },
+    {
+        "name": "tipo:fix",
+        "color": "d73a4a",
+        "description": "Correccion de error"
+    },
+    {
+        "name": "tipo:refactor",
+        "color": "cfd3d7",
+        "description": "Refactorizacion de codigo"
+    },
+    {
+        "name": "tipo:docs",
+        "color": "0075ca",
+        "description": "Cambios en documentación"
+    },
+    {
+        "name": "tipo:test",
+        "color": "c2e0c6",
+        "description": "Tests nuevos o modificados"
+    }
+]

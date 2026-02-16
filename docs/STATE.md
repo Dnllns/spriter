@@ -22,7 +22,8 @@ This document tracks the current status of the project across different dimensio
 - [x] **Releases**: Automated GitHub Releases with `uv build` artifacts (v0.2.6 deployed).
 - [x] **Toolchain**: Migrated to `uv` for all workflows and local development.
 - [x] **Security**: Enabled `CodeQL` scanning and `Dependabot` updates.
-- [x] **Community**: Added standardized Issue/PR templates.
+- [x] **Community**: Added standardized Issue/PR templates (HU/AC focused).
+- [x] **Process**: Enforced Strict Development Philosophy (HU/AC/ADR/uv) in `CONTRIBUTING.md`.
 - [x] **Simulator Engine**: Defined `Animation` / `Frame` entities and `SimulatorService` domain logic.
 
 ### Pending (Backlog for Phase 3)

@@ -1,18 +1,31 @@
-## Description
+---
+name: Pull Request Template
+about: Template for pull requests adhering to HU/AC process.
+title: ''
+labels: ''
+assignees: ''
+---
 
-<!-- Describe your changes in detail -->
+## Historia de Usuario
+HU-XXX
 
-## Motivation and Context
+## Contexto
+<!-- Explicación breve de lo que se resuelve en este PR -->
 
-<!-- Why is this change required? What problem does it solve? -->
+## Acceptance Criteria cubiertos
+- [ ] AC-XXX-YY: [Descripción corta]
+- [ ] AC-XXX-ZZ: [Descripción corta]
 
 ## Tests
+- [ ] Unitarios: `uv run pytest tests/unit/test_ac_xxx_yy.py`
+- [ ] Integración: `uv run pytest tests/integration/test_hu_xxx.py`
 
-<!-- Detail the tests you have added or updated. -->
-<!-- Explain how they verify your changes. -->
+## Checklist (Mandatorio)
+- [ ] Commits siguen formato `feat: desc [HU-XXX][AC-XXX-YY]`
+- [ ] `uv run pytest` pasa al 100%
+- [ ] `uv run ruff check .` no reporta errores
+- [ ] `uv.lock` actualizado (si aplica)
+- [ ] ADR creado/actualizado (si hubo cambios de arquitectura)
 
-## Checklist:
-- [ ] I have installed `uv` and run checks locally.
-- [ ] `uv run pytest` passes.
-- [ ] `uv run ruff check .` and `uv run ruff format .` pass.
-- [ ] I have updated the documentation (if applicable).
+## Screenshots / Evidencia (Opcional)
+<!-- Si es visual o un cambio complejo, añadir imagen o log -->

@@ -1,23 +1,21 @@
 [project]
 name = "spriter"
 version = "0.2.6"
-description = "Advanced Sprite Repository & Simulator"
-authors = [{name = "Antigravity", email = "antigravity@google.com"}]
-dependencies = [
-    "fastapi>=0.100.0",
-    "uvicorn[standard]>=0.23.0",
-    "pydantic-settings>=2.0.0",
-    "python-dotenv>=1.0.0",
-    "sqlalchemy>=2.0.0",
-    "alembic>=1.11.0",
-    "jinja2>=3.1.0",
-    "python-multipart>=0.0.6",
-    # Auth
-    "python-jose[cryptography]>=3.3.0",
-    "httpx>=0.24.0",
-    "aiofiles>=23.0.0",
-]
+description = "High-performance specialized repository for 2D sprites and animation sheets"
+readme = "README.md"
 requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.110.0",
+    "uvicorn[standard]>=0.29.0",
+    "pydantic-settings>=2.2.0",
+    "sqlalchemy>=2.0.29",
+    "alembic>=1.13.1",
+    "python-jose[cryptography]>=3.3.0",
+    "passlib[bcrypt]>=1.7.4",
+    "boto3>=1.34.87",
+    "httpx>=0.27.0",
+    "aiofiles>=24.1.0",
+]
 
 [project.optional-dependencies]
 test = [
@@ -46,28 +44,34 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/application", "src/domain", "src/infrastructure", "src/presentation", "src/config.py", "src/main.py", "src/dependencies.py"]
+packages = [
+    "src/application", 
+    "src/domain", 
+    "src/infrastructure", 
+    "src/presentation", 
+    "src/config.py", 
+    "src/main.py", 
+    "src/dependencies.py"
+]
 
 [tool.ruff]
 line-length = 88
 target-version = "py311"
 
 [tool.ruff.lint]
-select = [
-    "E",  # pycodestyle errors
-    "W",  # pycodestyle warnings
-    "F",  # pyflakes
-    "I",  # isort
-    "B",  # flake8-bugbear
-    "C4", # flake8-comprehensions
-    "UP", # pyupgrade
-]
-ignore = ["B008"]
+select = ["E", "F", "B", "I"]
+ignore = []
 
 [tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q --cov=src --cov-report=term-missing"
 testpaths = ["tests"]
 python_files = ["test_*.py"]
-addopts = "--cov=src --cov-report=term-missing"
-markers = [
-    "knowledge: Tests for project documentation and state compliance"
+python_functions = ["test_*"]  # Standard pytest matching
+python_classes = ["Test*"]
+asyncio_mode = "strict"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::UserWarning",
 ]
+
