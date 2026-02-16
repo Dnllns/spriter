@@ -19,10 +19,30 @@ class AnimationType(StrEnum):
     CUSTOM = "custom"
 
 
+class Frame(BaseModel):
+    id: uuid.UUID = Field(default_factory=uuid.uuid4)
+    index: int
+    duration_ms: int = 100  # Default 100ms per frame
+    image_location: str | None = None  # Could be path or internal reference
+    metadata: dict = Field(default_factory=dict)
+
+
+class Animation(BaseModel):
+    id: uuid.UUID = Field(default_factory=uuid.uuid4)
+    name: str
+    type: AnimationType = AnimationType.CUSTOM
+    fps: int = 10
+    frames: list[Frame] = Field(default_factory=list)
+    loop: bool = True
+
+
 class SpriteVersion(BaseModel):
     version: int = 1
     image_url: str
     metadata: dict = Field(default_factory=dict)
+    animations: list[Animation] = Field(
+        default_factory=list
+    )  # Added animations support
     created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
     changelog: str | None = None
 
@@ -39,7 +59,11 @@ class Sprite(BaseModel):
     updated_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
 
     def add_version(
-        self, image_url: str, metadata: dict, changelog: str | None = None
+        self,
+        image_url: str,
+        metadata: dict,
+        changelog: str | None = None,
+        animations: list[Animation] | None = None,
     ) -> SpriteVersion:
         """Adds a new version to the sprite."""
         new_version_num = len(self.versions) + 1
@@ -48,6 +72,7 @@ class Sprite(BaseModel):
             image_url=image_url,
             metadata=metadata,
             changelog=changelog,
+            animations=animations or [],
         )
         self.versions.append(new_version)
         self.updated_at = datetime.now(UTC)

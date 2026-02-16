@@ -3,7 +3,7 @@
 
 This document tracks the current status of the project across different dimensions.
 
-## Phase: 3 - Frontend & Simulator (Starting)
+## Phase: 3 - Frontend & Simulator (In Progress)
 
 ### Completed (Done)
 - [x] **Project Structure**: Clean Architecture folders in `src/`.
@@ -23,6 +23,7 @@ This document tracks the current status of the project across different dimensio
 - [x] **Toolchain**: Migrated to `uv` for all workflows and local development.
 - [x] **Security**: Enabled `CodeQL` scanning and `Dependabot` updates.
 - [x] **Community**: Added standardized Issue/PR templates.
+- [x] **Simulator Engine**: Defined `Animation` / `Frame` entities and `SimulatorService` domain logic.
 
 ### Pending (Backlog for Phase 3)
 - [ ] **UI Design**: Wireframes and HTML/CSS structure for the main dashboard.
@@ -34,6 +35,6 @@ This document tracks the current status of the project across different dimensio
 - **Dependency**: Real OIDC credentials needed for production.
 
 ### Next Actionable Steps
-1.  Define **Simulator Domain Core** (Phase 3 transition): Animation frames, frame rates, and preview logic in `src/domain/simulator.py`.
+1.  Implement **Simulator API** endpoints: `POST /simulate` to calculate frame for given time.
 2.  Implement **API Error Handling** and **Pagination** in `src/presentation/routers.py`.
 
