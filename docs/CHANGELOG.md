@@ -5,10 +5,14 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- **Simulator**: Implemented `POST /api/v1/simulate` endpoint to calculate current frame and progress [HU-004].
+- **Simulator**: Added `Animation` and `Frame` domain entities and `SimulatorService` logic.
+- **Process**: Enforced strict development philosophy (HU/AC/PR/ADR) in `CONTRIBUTING.md`.
+- **API**: Implemented strict pagination validation (limit/offset) for `GET /api/v1/sprites` [HU-005].
+- **API**: Added global exception mapping for `SpriteNotFoundError` and `UnauthorizedError` [HU-005][ADR-0006].
 - **Security**: Enabled CodeQL workflow for automated security scanning.
 - **Maintenance**: Enabled Dependabot for weekly dependency updates.
-- **Community**: Added standardized Bug Report, Feature Request, and Pull Request templates.
-- **Documentation**: Added ADR 0004 documenting the decision to adopt `uv`.
+- **Documentation**: Added ADR 0005 (`uv` adoption) and ADR 0006 (Global Error Handling).
 
 ## [0.2.6] - 2026-02-16
 
