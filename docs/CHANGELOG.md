@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.2.5] - 2026-02-16
+
+### Fixed
+- **Release Workflow**: Added `permissions: contents: write` to allow automated release creation.
+- **CI**: Added debug step to inspect Python path.
+
 ## [0.2.4] - 2026-02-16
 
 ### Changed
