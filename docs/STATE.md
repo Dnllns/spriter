@@ -23,7 +23,7 @@ This document tracks the current status of the project across different dimensio
 - [x] **Toolchain**: Migrated to `uv` for all workflows and local development.
 - [x] **Security**: Enabled `CodeQL` scanning and `Dependabot` updates.
 - [x] **Community**: Added standardized Issue/PR templates (HU/AC focused).
-- [x] **Process**: Enforced Strict Development Philosophy (HU/AC/ADR/uv) in `CONTRIBUTING.md`.
+- [x] **Process**: Enforced Strict Development Philosophy and Traceability (HU -> Issue -> Commit) in `CONTRIBUTING.md`.
 - [x] **Simulator Engine**: Defined `Animation` / `Frame` entities and `SimulatorService` domain logic.
 - [x] **Simulator API**: POST /simulate endpoint implemented and tested.
 - [x] **API Robustness**: Added strict pagination validation and global error handling [HU-005].
