@@ -39,7 +39,11 @@ These rules are non-negotiable for all contributions to Spriter.
 
 ## 5. Repository Process (GitHub)
 
-- **Mandatory HU/AC**: No code without a User Story (`docs/historias/HU-XXX.md`) and verified Acceptance Criteria.
-- **Strict Branching**: `<type>/HU-XXX-description`. NO commits to `main`.
+- **Traceability Hierarchy**:
+  1.  **User Story (HU)**: Created in `docs/historias/HU-XXX.md` with detailed AC.
+  2.  **GitHub Issue**: Created and linked to the HU. Must have mandatory **Labels** (type, layer, status, and HU reference).
+  3.  **Branch**: Named `<type>/HU-XXX-short-description`.
+  4.  **Commits**: MUST reference the Issue ID (e.g., `feat: implementation (#12) [HU-XXX]`).
+- **No Orphan Commits**: No code changes are allowed without an associated marked Issue and HU.
 - **Merge Criteria**: PRs require 100% test pass, valid commits (with HU tags), and updated docs.
 - **Detailed Workflow**: Reference `docs/CONTRIBUTING.md` for the full mandatory protocol.

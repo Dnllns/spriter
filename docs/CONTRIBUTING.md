@@ -61,16 +61,17 @@ Tipos permitidos:
 ### 4.1 Formato obligatorio
 
 ```
-<type>(<scope>): <subject> [HU-XXX][AC-XXX-YY]
+<type>(<scope>): <subject> (#ISSUE_ID) [HU-XXX][AC-XXX-YY]
 ```
 
 Ejemplo:
 ```
-feat(auth): add jwt login [HU-023][AC-023-01]
+feat(auth): add jwt login (#42) [HU-023][AC-023-01]
 ```
 
 ### 4.2 Reglas duras
 
+* ❌ Commit sin `(#ISSUE_ID)` → inválido
 * ❌ Commit sin `[HU-XXX]` → inválido
 * ❌ Cambio funcional sin AC → inválido
 * Dependencias **solo** vía `uv`
@@ -127,20 +128,19 @@ Ver `.github/PULL_REQUEST_TEMPLATE.md`
 
 ---
 
-## 8. Labels (obligatorios)
-
 ### 8.1 Labels mínimas
 
-* `HU:XXX`
-* `AC:XXX-YY`
-* `backend` / `frontend` / `infra`
-* `estado:en_progreso | estado:bloqueado | estado:listo`
-* `tipo:feature | fix | refactor | test | docs`
+* `HU:XXX` (Vinculación a la Historia de Usuario)
+* `AC:XXX-YY` (Vinculación al Criterio de Aceptación)
+* `backend` / `frontend` / `infra` (Capa afectada)
+* `estado:en_progreso | estado:bloqueado | estado:listo` (Flujo)
+* `tipo:feature | fix | refactor | test | docs` (Tipo)
 
-### 8.2 Uso obligatorio en:
+### 8.2 Trazabilidad Obligatoria
 
-* Issues
-* Pull Requests
+* **Issue**: Debe mencionar la HU a la que pertenece y tener todas las labels correspondientes.
+* **Pull Request**: Debe cerrar el issue (ej. `Closes #42`) y tener las mismas labels.
+* **Commit**: Debe incluir el ID del issue.
 
 ---
 

@@ -20,6 +20,7 @@ Any significant change MUST update this stack to maintain context.
 3.  **Automation**: CI/CD for testing, docs, and versioning.
 4.  **Observability**: Structured Logging and request tracing for efficient debugging.
 5.  **Knowledge Driven**: This file and `docs/` serve as the source of truth for project state.
+6.  **Strict Traceability**: Mandatory hierarchy Linking Commits -> Issues -> User Stories.
 
 ## Roadmap & Phases
 
