@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-16T22:10:31.171102",
+  "generated_at": "2026-02-16T22:17:59.389797",
   "project": "Spriter",
   "vision": "Advanced Sprite Repository & Simulator (Clean Arch, Full Python)",
   "current_phase": {
@@ -9,17 +9,16 @@
   },
   "knowledge_status": {
     "latest_adr": "0004_use_uv_for_dependency_management.md",
-    "pending_items_count": 4,
+    "pending_items_count": 3,
     "next_steps_count": 2
   },
   "next_steps": [
-    "1.  Implement **Simulator API** endpoints: `POST /simulate` to calculate frame for given time.",
-    "2.  Implement **API Error Handling** and **Pagination** in `src/presentation/routers.py`."
+    "1.  Implement **API Error Handling** and **Pagination** [HU-005] in `src/presentation/routers.py`.",
+    "2.  Design and implement the **Frontend Dashboard** (Phase 3 UI)."
   ],
   "pending_features": [
     "**UI Design**: Wireframes and HTML/CSS structure for the main dashboard.",
-    "**Simulator Engine**: Core JavaScript/Canvas logic for sprite animation.",
-    "**Simulator API**: Backend endpoints to serve run-time sprite data.",
+    "**Simulator Engine (Frontend)**: Core JavaScript/Canvas logic for sprite animation.",
     "**Player Component**: Reusable web component for playback."
   ]
 }

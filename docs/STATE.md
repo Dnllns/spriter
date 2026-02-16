@@ -26,6 +26,7 @@ This document tracks the current status of the project across different dimensio
 - [x] **Process**: Enforced Strict Development Philosophy (HU/AC/ADR/uv) in `CONTRIBUTING.md`.
 - [x] **Simulator Engine**: Defined `Animation` / `Frame` entities and `SimulatorService` domain logic.
 - [x] **Simulator API**: POST /simulate endpoint implemented and tested.
+- [x] **API Robustness**: Added strict pagination validation and global error handling [HU-005].
 
 ### Pending (Backlog for Phase 3)
 - [ ] **UI Design**: Wireframes and HTML/CSS structure for the main dashboard.
@@ -36,5 +37,5 @@ This document tracks the current status of the project across different dimensio
 - **Dependency**: Real OIDC credentials needed for production.
 
 ### Next Actionable Steps
-1.  Implement **API Error Handling** and **Pagination** in `src/presentation/routers.py`.
-2.  Design and implement the **Frontend Dashboard** (Phase 3 UI).
+1.  Design and implement the **Frontend Dashboard** (Phase 3 UI).
+2.  Implement **Simulator Engine (Frontend)** for animation previews.

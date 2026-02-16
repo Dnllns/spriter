@@ -1,6 +1,8 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 
+from .domain.exceptions import SpriteNotFoundError, UnauthorizedError
 from .presentation.routers import router as sprite_router
 from .presentation.simulator_router import router as simulator_router
 
@@ -25,6 +27,24 @@ app.add_middleware(
 
 app.include_router(sprite_router, prefix="/api/v1")
 app.include_router(simulator_router, prefix="/api/v1")
+
+
+@app.exception_handler(SpriteNotFoundError)
+async def sprite_not_found_exception_handler(
+    request: Request, exc: SpriteNotFoundError
+):
+    return JSONResponse(
+        status_code=404,
+        content={"detail": str(exc)},
+    )
+
+
+@app.exception_handler(UnauthorizedError)
+async def unauthorized_exception_handler(request: Request, exc: UnauthorizedError):
+    return JSONResponse(
+        status_code=403,
+        content={"detail": str(exc)},
+    )
 
 
 @app.get("/health")
