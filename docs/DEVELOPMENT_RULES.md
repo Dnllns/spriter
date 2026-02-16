@@ -31,8 +31,9 @@ These rules are non-negotiable for all contributions to Spriter.
 - **FastAPI**: Use dependency injection for services.
 - **Commit Messages**: Follow Conventional Commits format (`feat:`, `fix:`, `docs:`, `chore:`).
 
-## 4. Project Memory
+## 5. Repository Process (GitHub)
 
-- **Update state**: If a task is completed, update `docs/STATE.md`.
-- **Update Manifest**: If phase changes or major decision made, update `AI_MANIFEST.md`.
-- **ADRs**: If a significant architectural decision is made, create a new ADR record.
+- **Mandatory HU/AC**: No code without a User Story (`docs/historias/HU-XXX.md`) and verified Acceptance Criteria.
+- **Strict Branching**: `<type>/HU-XXX-description`. NO commits to `main`.
+- **Merge Criteria**: PRs require 100% test pass, valid commits (with HU tags), and updated docs.
+- **Detailed Workflow**: Reference `docs/CONTRIBUTING.md` for the full mandatory protocol.

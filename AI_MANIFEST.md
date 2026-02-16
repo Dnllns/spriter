@@ -37,7 +37,8 @@ Any significant change MUST update this stack to maintain context.
 
 ### Phase 3: Frontend & Simulator (Current)
 - [ ] Design Modern UI (HTML/CSS/JS).
-- [ ] Implement Sprite Simulator (Canvas/JS interacting with Python Backend).
+- [x] Implement Sprite Simulator API [HU-004].
+- [ ] Implement Sprite Simulator Frontend (Canvas/JS).
 - [ ] Build "Player" for animations.
 
 ### Phase 4: Community & Advanced Features
@@ -45,5 +46,10 @@ Any significant change MUST update this stack to maintain context.
 - [x] Documentation Portal (Sphinx).
 - [x] CI/CD Pipelines (GitHub Actions/GitLab CI).
 
-## Current Context
-Phase 2 completed. Core backend, API, storage, and authentication are operational. CI/CD and Versioning are automated with `uv`. Ready to start Phase 3: Frontend & Simulator.
+### Current Context
+Phase 3 (Frontend & Simulator) is active. The backend core for simuation is done. We are currently in branch `refactor/HU-005-api-robustness-pagination` working on **HU-005** (API Robustness and Pagination).
+
+### Current State Verification
+- [x] All knowledge tests pass.
+- [x] Process HU/AC/PR/ADR documented in `CONTRIBUTING.md`.
+- [x] Active Task: Implement pagination logic and global error handling for `SpriteService` outputs.

@@ -36,5 +36,5 @@ This document tracks the current status of the project across different dimensio
 - **Dependency**: Real OIDC credentials needed for production.
 
 ### Next Actionable Steps
-1.  Implement **API Error Handling** and **Pagination** in `src/presentation/routers.py`.
+1.  Implement **API Error Handling** and **Pagination** [HU-005] in `src/presentation/routers.py`.
 2.  Design and implement the **Frontend Dashboard** (Phase 3 UI).
