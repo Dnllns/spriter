@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+- **Security**: Enabled CodeQL workflow for automated security scanning.
+- **Maintenance**: Enabled Dependabot for weekly dependency updates.
+- **Community**: Added standardized Bug Report, Feature Request, and Pull Request templates.
+- **Documentation**: Added ADR 0004 documenting the decision to adopt `uv`.
+
 ## [0.2.6] - 2026-02-16
 
 ### Fixed

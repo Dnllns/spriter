@@ -21,6 +21,8 @@ This document tracks the current status of the project across different dimensio
 - [x] **Versioning**: Bumped to `0.2.6` with strict semantic versioning.
 - [x] **Releases**: Automated GitHub Releases with `uv build` artifacts (v0.2.6 deployed).
 - [x] **Toolchain**: Migrated to `uv` for all workflows and local development.
+- [x] **Security**: Enabled `CodeQL` scanning and `Dependabot` updates.
+- [x] **Community**: Added standardized Issue/PR templates.
 
 ### Pending (Backlog for Phase 2)
 - [ ] **OIDC Provider Setup**: Integration with a real provider (Keycloak/Auth0) in a staging environment.
