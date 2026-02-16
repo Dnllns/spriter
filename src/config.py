@@ -7,7 +7,7 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "Spriter"
     DATABASE_URL: str = "sqlite:///./spriter.db"
     # Default to SQLite for easy local dev, pluggable to Postgres
-    STORAGE_PATH: str = "/tmp/spriter_uploads"
+    STORAGE_PATH: str = "/tmp/spriter_uploads"  # nosec: B108
 
     # Auth (OIDC)
     OIDC_ISSUER: str = "https://your-oidc-provider.com"

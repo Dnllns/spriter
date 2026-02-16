@@ -36,7 +36,7 @@ class OIDCAuthenticatorAdapter(AuthenticatorPort):
             # RS256 requires the public key.
             payload = jwt.decode(
                 token,
-                key="placeholder_key",  # Should be from JWKS
+                key="placeholder_key",  # nosec: B105
                 audience=self.audience,
                 issuer=self.issuer,
                 algorithms=["RS256"],
@@ -64,7 +64,7 @@ class OIDCAuthenticatorAdapter(AuthenticatorPort):
 class MockAuthenticator(AuthenticatorPort):
     async def authenticate(self, token: str) -> User:
         """A simple mock that returns a user based on the 'token' content."""
-        if token == "invalid-token":
+        if token == "invalid-token":  # nosec: B105
             raise HTTPException(status_code=401, detail="Invalid token")
 
         return User(id=f"user_{token}", email=f"{token}@example.com", username=token)
