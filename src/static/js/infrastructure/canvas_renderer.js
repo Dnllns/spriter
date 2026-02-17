@@ -40,15 +40,17 @@ export class CanvasRenderer {
                     const frameIndex = entity.currentFrame || 0;
                     const frame = entity.animation.frames[frameIndex];
 
-                    // Frame data from metadata or calculated
-                    // x, y on spritesheet, w, h on spritesheet
-                    const sx = frame.x !== undefined ? frame.x : 0;
-                    const sy = frame.y !== undefined ? frame.y : 0;
-                    const sw = frame.w || entity.image.width;
-                    const sh = frame.h || entity.image.height;
+                    // Use individual frame image if present, otherwise fallback to bundle
+                    const displayImage = frame.image_obj || entity.image;
+
+                    // If using individual frame, source x,y are 0,0
+                    const sx = frame.image_obj ? 0 : (frame.x !== undefined ? frame.x : 0);
+                    const sy = frame.image_obj ? 0 : (frame.y !== undefined ? frame.y : 0);
+                    const sw = frame.image_obj ? frame.image_obj.width : (frame.w || entity.image.width);
+                    const sh = frame.image_obj ? frame.image_obj.height : (frame.h || entity.image.height);
 
                     this.ctx.drawImage(
-                        entity.image,
+                        displayImage,
                         sx, sy, sw, sh,
                         entity.x, entity.y, entity.width || 64, entity.height || 64
                     );

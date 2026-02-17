@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-17T22:11:12.767481",
+  "generated_at": "2026-02-17T22:54:34.415530",
   "project": "Spriter",
   "vision": "Advanced Sprite Repository & Simulator (Clean Arch, Full Python)",
   "current_phase": {
@@ -9,15 +9,14 @@
   },
   "knowledge_status": {
     "latest_adr": "0007-structured-logging.md",
-    "pending_items_count": 1,
-    "next_steps_count": 3
+    "pending_items_count": 0,
+    "next_steps_count": 4
   },
   "next_steps": [
-    "1.  Verify the \"Player Component\" design: Decide on a lightweight script for embedding.",
-    "2.  Implement `Embedding API`: Allow users to copy a snippet like `<script src=\"...\"></script><spriter-player id=\"...\"></spriter-player>`.",
-    "3.  Add \"Share\" button to simulations."
+    "1.  **Mobile Optimization**: Refine `@media` queries in `index.css` for small screens.",
+    "2.  **Public/Private Flags**: Add `is_public` field to `Sprite` entity and database models.",
+    "3.  **Analytics**: Implement a new `AnalyticsService` to track plays of embedded sprites.",
+    "4.  **Frame Browser**: Implement a UI section to browse and manage individual frames per sprite."
   ],
-  "pending_features": [
-    "**Player Component**: Reusable web component for playback (Medium priority)."
-  ]
+  "pending_features": []
 }
