@@ -30,21 +30,22 @@ This document tracks the current status of the project across different dimensio
 - [x] **Observability**: Implemented Structured Logging with `structlog` and Request ID tracing [HU-006][ADR-0007].
 
 ### Pending (Backlog for Phase 3)
-- [x] **UI Design**: Wireframes and HTML/CSS structure for the main dashboard.
-- [x] **Frontend Architecture**: Structured JS separated into Application (Engine), Domain (Simulation), and Infrastructure (Renderer).
-- [x] **Frontend Implementation**: Dashboard rendering real sprite data structure (Tags, Versions).
-- [x] **Simulator Integration**: "Simulate" button loads sprite image into Canvas engine.
-- [x] **Simulator Engine (Interactivity)**: Controls for playback, speed, and looping implemented.
-- [x] **Upload Functionality**: UI modal and service logic for creating sprites and uploading releases.
+- [x] **UI Design**: Sidebar, Dashboard grid, and Glassy aesthetics.
+- [x] **Frontend Architecture**: Structured JS (Engine, Simulation, Renderer).
+- [x] **Frontend Implementation**: Dashboard rendering real sprite data (Tags, Versions).
+- [x] **Simulator Integration**: "Simulate" button loads sprite frame-by-frame.
+- [x] **Simulator Engine**: Controls for playback, speed, and looping.
+- [x] **Refined Animation**: Multi-frame support via grid-detection.
+- [x] **Upload Functionality**: Modal for creating sprites and uploading releases with animation data.
 - [ ] **Player Component**: Reusable web component for playback (Low priority).
 
 ### Blocked / Risks
 - **Dependency**: Real OIDC credentials needed for production.
 
 ### Next Actionable Steps
-1.  Verify full workflow in browser manually or via more advanced E2E (`Selenium`/`Playwright`) if needed.
-2.  Refine `SimulationLogic` (actual frame animation instead of placeholder).
-3.  Implement `Player Component` for embedding.
+1.  Manual UI Testing: Run the server and manually verify the "Grid Animation" generation.
+2.  Implement `Flashy Landing Page` to showcase the simulator.
+3.  Implement `Player Component` (Web Component).
 
 ### Quality Assurance
 - [ ] Pipeline Green: Verify using `gh run list`.

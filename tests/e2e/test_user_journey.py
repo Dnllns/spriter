@@ -40,7 +40,26 @@ class TestSimulationFlow:
             dummy_content = b"fake_image_content"
             # Using a tuple for files: (filename, content, content_type)
             files = {"file": ("test.png", dummy_content, "image/png")}
-            data = {"metadata": "{}", "changelog": "Initial version"}
+
+            # Simple animation metadata
+            animations_payload = [
+                {
+                    "name": "idle",
+                    "fps": 5,
+                    "frames": [
+                        {"index": 0, "x": 0, "y": 0, "w": 32, "h": 32},
+                        {"index": 1, "x": 32, "y": 0, "w": 32, "h": 32},
+                    ],
+                    "loop": True,
+                }
+            ]
+            import json
+
+            data = {
+                "metadata": "{}",
+                "changelog": "Initial version",
+                "animations": json.dumps(animations_payload),
+            }
 
             upload_resp = client.post(
                 f"/api/v1/sprites/{sprite_id}/versions",
@@ -54,7 +73,8 @@ class TestSimulationFlow:
 
             version_data = upload_resp.json()
             assert version_data["version"] == 1
-            assert "image_url" in version_data
+            assert len(version_data.get("animations", [])) == 1
+            assert version_data["animations"][0]["name"] == "idle"
 
             # 3. Verify it appears in Dashboard List (GET /sprites)
             list_resp = client.get("/api/v1/sprites", headers=auth_headers)

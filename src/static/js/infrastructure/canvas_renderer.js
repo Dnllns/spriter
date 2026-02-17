@@ -31,9 +31,25 @@ export class CanvasRenderer {
 
         state.entities.forEach(entity => {
             if (entity.image) {
-                // If sprite sheet logic existed, we'd use drawImage locally clipped.
-                // For now, draw whole image scaled to fit
-                this.ctx.drawImage(entity.image, entity.x, entity.y, entity.width || 64, entity.height || 64);
+                if (entity.animation && entity.animation.frames && entity.animation.frames.length > 0) {
+                    const frameIndex = entity.currentFrame || 0;
+                    const frame = entity.animation.frames[frameIndex];
+
+                    // Frame data from metadata or calculated
+                    // x, y on spritesheet, w, h on spritesheet
+                    const sx = frame.x !== undefined ? frame.x : 0;
+                    const sy = frame.y !== undefined ? frame.y : 0;
+                    const sw = frame.w || entity.image.width;
+                    const sh = frame.h || entity.image.height;
+
+                    this.ctx.drawImage(
+                        entity.image,
+                        sx, sy, sw, sh,
+                        entity.x, entity.y, entity.width || 64, entity.height || 64
+                    );
+                } else {
+                    this.ctx.drawImage(entity.image, entity.x, entity.y, entity.width || 64, entity.height || 64);
+                }
             } else {
                 // Fallback
                 this.ctx.fillStyle = entity.color || 'red';

@@ -53,6 +53,7 @@ class SpriteVersionModel(Base):
     version_number: Mapped[int] = mapped_column(Integer, nullable=False)
     image_url: Mapped[str] = mapped_column(String, nullable=False)
     metadata_json: Mapped[dict] = mapped_column(JSON, default=dict)
+    animations_json: Mapped[List[dict]] = mapped_column(JSON, default=list)
     changelog: Mapped[Optional[str]] = mapped_column(String, nullable=True)
     created_at: Mapped[datetime] = mapped_column(
         DateTime, default=lambda: datetime.now(UTC)

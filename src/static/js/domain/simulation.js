@@ -33,6 +33,31 @@ export class SimulationLogic {
         state.currentTime += effectiveDt;
 
         state.entities.forEach(entity => {
+            // Animation logic
+            if (entity.animation && entity.animation.frames && entity.animation.frames.length > 0) {
+                if (entity.animElapsed === undefined) entity.animElapsed = 0;
+                if (entity.currentFrame === undefined) entity.currentFrame = 0;
+
+                entity.animElapsed += effectiveDt;
+
+                // Get current frame duration or use animation fps
+                const fps = entity.animation.fps || 10;
+                const frameDuration = 1 / fps;
+
+                if (entity.animElapsed >= frameDuration) {
+                    entity.animElapsed -= frameDuration;
+                    entity.currentFrame++;
+
+                    if (entity.currentFrame >= entity.animation.frames.length) {
+                        if (entity.animation.loop !== false) {
+                            entity.currentFrame = 0;
+                        } else {
+                            entity.currentFrame = entity.animation.frames.length - 1;
+                        }
+                    }
+                }
+            }
+
             if (entity.update) {
                 entity.update(effectiveDt);
             }

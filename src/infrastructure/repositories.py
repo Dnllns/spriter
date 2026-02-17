@@ -62,6 +62,9 @@ class SqlAlchemySpriteRepository(SpriteRepository):
                         version_number=v.version,
                         image_url=v.image_url,
                         metadata_json=v.metadata,
+                        animations_json=[
+                            a.model_dump(mode="json") for a in v.animations
+                        ],
                         changelog=v.changelog,
                         created_at=v.created_at,
                     )
@@ -77,6 +80,7 @@ class SqlAlchemySpriteRepository(SpriteRepository):
                 version=v.version_number,
                 image_url=v.image_url,
                 metadata=v.metadata_json,
+                animations=v.animations_json,
                 created_at=v.created_at,
                 changelog=v.changelog,
             )

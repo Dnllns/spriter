@@ -51,10 +51,11 @@ export class SpriteService {
         return await response.json();
     }
 
-    async addSpriteVersion(spriteId, file) {
+    async addSpriteVersion(spriteId, file, animations = []) {
         const formData = new FormData();
         formData.append('file', file);
-        formData.append('metadata', JSON.stringify({})); // Empty metadata for now
+        formData.append('metadata', JSON.stringify({}));
+        formData.append('animations', JSON.stringify(animations));
 
         const response = await fetch(`${this.baseUrl}/sprites/${spriteId}/versions`, {
             method: 'POST',

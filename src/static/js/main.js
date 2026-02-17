@@ -111,30 +111,75 @@ class App {
         const name = formData.get('name');
         const category = formData.get('category');
         const file = formData.get('file');
+        const frameW = parseInt(formData.get('frame_w'));
+        const frameH = parseInt(formData.get('frame_h'));
 
         try {
             // 1. Create Sprite
             const sprite = await this.spriteService.createSprite(name, [category]);
             console.log("Sprite created:", sprite);
 
-            // 2. Upload Version
-            if (file) {
-                await this.spriteService.addSpriteVersion(sprite.id, file);
-                console.log("Version uploaded.");
+            // 2. Prepare Animations if grid defined
+            let animations = [];
+            if (file && !isNaN(frameW) && !isNaN(frameH)) {
+                try {
+                    const img = await this._loadImage(file);
+                    animations = this._generateGridAnimation(img, frameW, frameH);
+                } catch (e) {
+                    console.warn("Could not auto-generate animations from cloud file, skipping grid.");
+                }
             }
 
-            // 3. UI Feedback and Close
+            // 3. Upload Version
+            if (file) {
+                await this.spriteService.addSpriteVersion(sprite.id, file, animations);
+                console.log("Version uploaded with animations:", animations);
+            }
+
+            // 4. UI Feedback and Close
             alert("Sprite uploaded successfully!");
             document.getElementById('upload-modal').classList.add('hidden');
             form.reset();
 
-            // 4. Reload Dashboard (simplified)
+            // 5. Reload Dashboard
             this.init();
 
         } catch (error) {
             console.error("Upload failed:", error);
             alert("Upload failed: " + error.message);
         }
+    }
+
+    _loadImage(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => resolve(img);
+                img.onerror = reject;
+                img.src = e.target.result;
+            };
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+        });
+    }
+
+    _generateGridAnimation(img, w, h) {
+        const frames = [];
+        let index = 0;
+        for (let y = 0; y < img.height; y += h) {
+            for (let x = 0; x < img.width; x += w) {
+                if (x + w <= img.width && y + h <= img.height) {
+                    frames.push({ index: index++, x, y, w, h });
+                }
+            }
+        }
+        return [{
+            name: 'idle',
+            fps: 10,
+            frames: frames,
+            loop: true
+        }];
     }
 }
 

@@ -54,6 +54,7 @@ async def add_sprite_version(
     sprite_id: uuid.UUID,
     file: UploadFile = File(...),
     metadata: str = Form("{}"),  # JSON string
+    animations: str = Form("[]"),  # JSON string
     changelog: str = Form(None),
     service: SpriteService = Depends(get_service),
     current_user: User = Depends(get_current_user),
@@ -66,11 +67,16 @@ async def add_sprite_version(
 
     try:
         meta_dict = json.loads(metadata)
+        anim_list = json.loads(animations)
     except json.JSONDecodeError:
-        raise HTTPException(status_code=400, detail="Invalid metadata JSON") from None
+        raise HTTPException(
+            status_code=400, detail="Invalid JSON format in form"
+        ) from None
 
     file_content = await file.read()
-    request = AddVersionRequest(metadata=meta_dict, changelog=changelog)
+    request = AddVersionRequest(
+        metadata=meta_dict, animations=anim_list, changelog=changelog
+    )
 
     version = await service.add_sprite_version(sprite_id, file_content, request)
     return version

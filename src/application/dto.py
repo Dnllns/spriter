@@ -1,5 +1,7 @@
 from pydantic import BaseModel
 
+from ..domain.entities import Animation
+
 
 class CreateSpriteRequest(BaseModel):
     name: str
@@ -10,4 +12,5 @@ class CreateSpriteRequest(BaseModel):
 class AddVersionRequest(BaseModel):
     changelog: str | None = None
     metadata: dict = {}
+    animations: list[Animation] = []
     # File content is handled separately in the service via bytes

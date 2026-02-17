@@ -35,7 +35,10 @@ class SpriteService:
         url = await self.storage.save(file_content, path)
 
         version = sprite.add_version(
-            image_url=url, metadata=request.metadata, changelog=request.changelog
+            image_url=url,
+            metadata=request.metadata,
+            changelog=request.changelog,
+            animations=request.animations,
         )
 
         await self.repo.save(sprite)

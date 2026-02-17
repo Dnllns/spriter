@@ -47,15 +47,27 @@ export class SimulatorService {
                 img.onerror = reject;
             });
 
-            // Add entity with image property
+            // Extract animation if present
+            let animation = null;
+            if (latestVersion.animations && latestVersion.animations.length > 0) {
+                // For now, just pick the first one (usually IDLE)
+                animation = latestVersion.animations[0];
+            } else {
+                // Default: one frame showing the whole image
+                animation = {
+                    name: 'default',
+                    fps: 1,
+                    frames: [{ x: 0, y: 0, w: img.width, h: img.height }],
+                    loop: true
+                };
+            }
+
+            // Add entity with image property and animation
             this.engine.addEntity({
                 x: 100, y: 100,
-                width: 64, height: 64, // Todo: detect from frame size
+                width: 128, height: 128, // Scaled for better visibility
                 image: img,
-                // Simple placeholder animation logic for now
-                update: (dt) => {
-                    // Placeholder: simple bounce
-                }
+                animation: animation
             });
         } else {
             console.warn("No image found for sprite, using placeholder");
