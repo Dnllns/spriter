@@ -36,16 +36,16 @@ This document tracks the current status of the project across different dimensio
 - [x] **Simulator Integration**: "Simulate" button loads sprite frame-by-frame.
 - [x] **Simulator Engine**: Controls for playback, speed, and looping.
 - [x] **Refined Animation**: Multi-frame support via grid-detection.
-- [x] **Upload Functionality**: Modal for creating sprites and uploading releases with animation data.
-- [ ] **Player Component**: Reusable web component for playback (Low priority).
+- [x] **Flashy Landing Page**: Premium entry point with hero sections and glassmorphism.
+- [ ] **Player Component**: Reusable web component for playback (Medium priority).
 
 ### Blocked / Risks
 - **Dependency**: Real OIDC credentials needed for production.
 
 ### Next Actionable Steps
-1.  Manual UI Testing: Run the server and manually verify the "Grid Animation" generation.
-2.  Implement `Flashy Landing Page` to showcase the simulator.
-3.  Implement `Player Component` (Web Component).
+1.  Verify the "Player Component" design: Decide on a lightweight script for embedding.
+2.  Implement `Embedding API`: Allow users to copy a snippet like `<script src="..."></script><spriter-player id="..."></spriter-player>`.
+3.  Add "Share" button to simulations.
 
 ### Quality Assurance
 - [ ] Pipeline Green: Verify using `gh run list`.

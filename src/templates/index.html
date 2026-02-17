@@ -160,6 +160,15 @@
                 </div>
                 <div class="actions">
                     <button class="btn btn-primary" onclick="window.simulator.start()">Start</button>
+                    <button class="btn" onclick="window.app.showEmbedModal()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="margin-right: 4px;">
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                        </svg>
+                        Share
+                    </button>
                     <button class="btn" onclick="window.simulator.stop()">Stop</button>
                 </div>
             </header>
@@ -251,6 +260,29 @@
                         <button type="submit" class="btn btn-primary">Upload</button>
                     </div>
                 </form>
+            </div>
+        </div>
+
+        <!-- Embed Modal -->
+        <div id="embed-modal" class="modal hidden"
+            style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 1001;">
+            <div class="card" style="width: 500px; padding: var(--spacing-xl);">
+                <h2 style="margin-bottom: var(--spacing-md);">Embed Sprite</h2>
+                <p style="color: var(--color-text-muted); margin-bottom: var(--spacing-md);">Copy this code to embed the
+                    player in your website:</p>
+
+                <div
+                    style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; margin-bottom: var(--spacing-lg); position: relative;">
+                    <code id="embed-code"
+                        style="display: block; font-family: monospace; white-space: pre-wrap; word-break: break-all; color: var(--color-accent); font-size: 0.85rem;"></code>
+                </div>
+
+                <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                    <button type="button" class="btn"
+                        onclick="document.getElementById('embed-modal').classList.add('hidden')">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="window.app.copyEmbedCode()">Copy to
+                        Clipboard</button>
+                </div>
             </div>
         </div>
 

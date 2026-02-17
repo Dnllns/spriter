@@ -6,10 +6,15 @@
  */
 
 export class CanvasRenderer {
-    constructor(canvasId) {
-        this.canvas = document.getElementById(canvasId);
+    constructor(canvasOrId) {
+        if (typeof canvasOrId === 'string') {
+            this.canvas = document.getElementById(canvasOrId);
+        } else {
+            this.canvas = canvasOrId;
+        }
+
         if (!this.canvas) {
-            console.warn(`CanvasRenderer: Canvas with id '${canvasId}' not found.`);
+            console.warn(`CanvasRenderer: Canvas not found.`);
             return;
         }
         this.ctx = this.canvas.getContext('2d');

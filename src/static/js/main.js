@@ -8,6 +8,7 @@
 import { SpriteService } from './services/sprite_service.js';
 import { DashboardUI } from './ui/dashboard.js';
 import { SimulatorService } from './services/simulator_service.js';
+import './components/spriter-player.js';
 
 class App {
     constructor() {
@@ -31,6 +32,8 @@ class App {
             stop: () => this.simulatorService.stop(),
             setSpeed: (speed) => this.simulatorService.setSpeed(speed)
         };
+
+        this.currentSimulatedSpriteId = null;
 
         // Make simulator accessible globally for the button callbacks in HTML
         window.simulator = this.simulator;
@@ -93,6 +96,7 @@ class App {
             window.navigate('simulator');
 
             // Load into simulator
+            this.currentSimulatedSpriteId = spriteId;
             this.simulatorService.loadSprite(sprite);
             this.simulatorService.start();
 
@@ -180,6 +184,39 @@ class App {
             frames: frames,
             loop: true
         }];
+    }
+
+    showEmbedModal() {
+        if (!this.currentSimulatedSpriteId) {
+            alert("No sprite loaded to share!");
+            return;
+        }
+
+        const modal = document.getElementById('embed-modal');
+        const code = document.getElementById('embed-code');
+
+        const origin = window.location.origin;
+        const scriptUrl = `${origin}/static/js/components/spriter-player.js`;
+
+        const embedHtml = `
+<!-- Spriter Player Embed -->
+<script type="module" src="${scriptUrl}"></script>
+<spriter-player 
+  sprite-id="${this.currentSimulatedSpriteId}" 
+  width="400" 
+  height="400" 
+  speed="1.0">
+</spriter-player>`.trim();
+
+        code.textContent = embedHtml;
+        modal.classList.remove('hidden');
+    }
+
+    copyEmbedCode() {
+        const code = document.getElementById('embed-code').textContent;
+        navigator.clipboard.writeText(code).then(() => {
+            alert("Embed code copied to clipboard!");
+        });
     }
 }
 

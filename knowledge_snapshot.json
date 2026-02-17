@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-17T22:09:00.805506",
+  "generated_at": "2026-02-17T22:11:12.767481",
   "project": "Spriter",
   "vision": "Advanced Sprite Repository & Simulator (Clean Arch, Full Python)",
   "current_phase": {
@@ -13,11 +13,11 @@
     "next_steps_count": 3
   },
   "next_steps": [
-    "1.  Manual UI Testing: Run the server and manually verify the \"Grid Animation\" generation.",
-    "2.  Implement `Flashy Landing Page` to showcase the simulator.",
-    "3.  Implement `Player Component` (Web Component)."
+    "1.  Verify the \"Player Component\" design: Decide on a lightweight script for embedding.",
+    "2.  Implement `Embedding API`: Allow users to copy a snippet like `<script src=\"...\"></script><spriter-player id=\"...\"></spriter-player>`.",
+    "3.  Add \"Share\" button to simulations."
   ],
   "pending_features": [
-    "**Player Component**: Reusable web component for playback (Low priority)."
+    "**Player Component**: Reusable web component for playback (Medium priority)."
   ]
 }
