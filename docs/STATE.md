@@ -43,9 +43,9 @@ This document tracks the current status of the project across different dimensio
 - **Dependency**: Real OIDC credentials needed for production.
 
 ### Next Actionable Steps
-1.  **Mobile Optimization**: Refine styles for small screens.
-2.  **Public/Private Flags**: Implement sprite visibility toggles.
-3.  **Analytics**: Track plays of embedded sprites.
+1.  **Mobile Optimization**: Refine `@media` queries in `index.css` for small screens.
+2.  **Public/Private Flags**: Add `is_public` field to `Sprite` entity and database models.
+3.  **Analytics**: Implement a new `AnalyticsService` to track plays of embedded sprites.
 
 ### Quality Assurance
 - [ ] Pipeline Green: Verify using `gh run list`.
