@@ -1,6 +1,6 @@
-import requests
 import json
-import uuid
+
+import requests
 
 BASE_URL = "http://localhost:8000/api/v1"
 AUTH_HEADERS = {"Authorization": "Bearer test-user"}
@@ -11,7 +11,8 @@ ASSETS = [
         "description": "The classic characters from Kenney's Pixel Platformer pack.",
         "tags": ["Character", "Kenney", "PixelArt"],
         "url": "https://raw.githubusercontent.com/uheartbeast/Pixel-Platformer/master/characters_packed.png",
-        "frame_w": 24,  # Pixel Platformer characters are often 24x24 or 18x18. Let's try 24 based on common knowledge of this specific repo.
+        "frame_w": 24,  # Pixel Platformer frames are often 24x24 or 18x18.
+        # Try 24 based on common knowledge of this specific repo.
         "frame_h": 24,
     },
     {
