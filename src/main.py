@@ -1,3 +1,4 @@
+import os
 import time
 import uuid
 from contextlib import asynccontextmanager
@@ -9,6 +10,7 @@ from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
+from .config import settings
 from .domain.exceptions import SpriteNotFoundError, UnauthorizedError
 
 # Ensure models are imported so tables are registered
@@ -51,6 +53,14 @@ except RuntimeError:
         StaticFiles(directory=os.path.join(os.path.dirname(__file__), "static")),
         name="static",
     )
+
+# Mount Sprites Storage
+os.makedirs(settings.STORAGE_PATH, exist_ok=True)
+app.mount(
+    "/sprites",
+    StaticFiles(directory=os.path.join(settings.STORAGE_PATH, "sprites")),
+    name="sprites",
+)
 
 # Templates
 try:

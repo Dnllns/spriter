@@ -37,15 +37,15 @@ This document tracks the current status of the project across different dimensio
 - [x] **Simulator Engine**: Controls for playback, speed, and looping.
 - [x] **Refined Animation**: Multi-frame support via grid-detection.
 - [x] **Flashy Landing Page**: Premium entry point with hero sections and glassmorphism.
-- [ ] **Player Component**: Reusable web component for playback (Medium priority).
+- [x] **Player Component**: Standalone `<spriter-player>` Web Component for shared simulation embedding.
 
 ### Blocked / Risks
 - **Dependency**: Real OIDC credentials needed for production.
 
 ### Next Actionable Steps
-1.  Verify the "Player Component" design: Decide on a lightweight script for embedding.
-2.  Implement `Embedding API`: Allow users to copy a snippet like `<script src="..."></script><spriter-player id="..."></spriter-player>`.
-3.  Add "Share" button to simulations.
+1.  **Mobile Optimization**: Refine styles for small screens.
+2.  **Public/Private Flags**: Implement sprite visibility toggles.
+3.  **Analytics**: Track plays of embedded sprites.
 
 ### Quality Assurance
 - [ ] Pipeline Green: Verify using `gh run list`.
