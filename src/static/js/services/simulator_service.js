@@ -19,6 +19,10 @@ export class SimulatorService {
         this.engine.stop();
     }
 
+    setSpeed(speed) {
+        this.engine.setSpeed(speed);
+    }
+
     /**
      * Loads a sprite animation into the simulator
      * @param {Object} spriteData - The sprite DTO from the API

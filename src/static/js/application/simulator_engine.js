@@ -63,4 +63,8 @@ export class SimulatorEngine {
     clearEntities() {
         this.state.clearEntities();
     }
+
+    setSpeed(speed) {
+        this.state.speed = parseFloat(speed);
+    }
 }

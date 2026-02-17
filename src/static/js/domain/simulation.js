@@ -10,6 +10,7 @@ export class SimulationState {
         this.entities = [];
         this.camera = { x: 0, y: 0, scale: 1.0 };
         this.currentTime = 0;
+        this.speed = 1.0;
     }
 
     addEntity(entity) {
@@ -28,15 +29,16 @@ export class SimulationState {
  */
 export class SimulationLogic {
     static update(state, dt) {
-        state.currentTime += dt;
+        const effectiveDt = dt * state.speed;
+        state.currentTime += effectiveDt;
 
         state.entities.forEach(entity => {
             if (entity.update) {
-                entity.update(dt);
+                entity.update(effectiveDt);
             }
             // Basic physics (velocity) if present
-            if (entity.vx) entity.x += entity.vx * dt;
-            if (entity.vy) entity.y += entity.vy * dt;
+            if (entity.vx) entity.x += entity.vx * effectiveDt;
+            if (entity.vy) entity.y += entity.vy * effectiveDt;
         });
 
         return state;

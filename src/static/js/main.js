@@ -28,7 +28,8 @@ class App {
         // Expose method facade
         this.simulator = {
             start: () => this.simulatorService.start(),
-            stop: () => this.simulatorService.stop()
+            stop: () => this.simulatorService.stop(),
+            setSpeed: (speed) => this.simulatorService.setSpeed(speed)
         };
 
         // Make simulator accessible globally for the button callbacks in HTML
@@ -98,6 +99,41 @@ class App {
         } catch (error) {
             console.error("Failed to load sprite for simulation:", error);
             alert("Failed to load sprite: " + error.message);
+        }
+    }
+
+    showUploadModal() {
+        document.getElementById('upload-modal').classList.remove('hidden');
+    }
+
+    async handleUpload(form) {
+        const formData = new FormData(form);
+        const name = formData.get('name');
+        const category = formData.get('category');
+        const file = formData.get('file');
+
+        try {
+            // 1. Create Sprite
+            const sprite = await this.spriteService.createSprite(name, [category]);
+            console.log("Sprite created:", sprite);
+
+            // 2. Upload Version
+            if (file) {
+                await this.spriteService.addSpriteVersion(sprite.id, file);
+                console.log("Version uploaded.");
+            }
+
+            // 3. UI Feedback and Close
+            alert("Sprite uploaded successfully!");
+            document.getElementById('upload-modal').classList.add('hidden');
+            form.reset();
+
+            // 4. Reload Dashboard (simplified)
+            this.init();
+
+        } catch (error) {
+            console.error("Upload failed:", error);
+            alert("Upload failed: " + error.message);
         }
     }
 }

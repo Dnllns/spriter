@@ -34,13 +34,14 @@ This document tracks the current status of the project across different dimensio
 - [x] **Frontend Architecture**: Structured JS separated into Application (Engine), Domain (Simulation), and Infrastructure (Renderer).
 - [x] **Frontend Implementation**: Dashboard rendering real sprite data structure (Tags, Versions).
 - [x] **Simulator Integration**: "Simulate" button loads sprite image into Canvas engine.
-- [ ] **Simulator Engine (Interactivity)**: Controls for playback, speed, and looping.
-- [ ] **Player Component**: Reusable web component for playback.
+- [x] **Simulator Engine (Interactivity)**: Controls for playback, speed, and looping implemented.
+- [x] **Upload Functionality**: UI modal and service logic for creating sprites and uploading releases.
+- [ ] **Player Component**: Reusable web component for playback (Low priority).
 
 ### Blocked / Risks
 - **Dependency**: Real OIDC credentials needed for production.
 
 ### Next Actionable Steps
-1.  Implement `Simulator Controls` (Play/Pause, Speed) in `src/static/js/ui/simulator.js`.
-2.  Implement "Upload Sprite" functionality using `python-multipart` to populate system.
-3.  Add `E2E` test for full simulation flow (requires seeded data).
+1.  Verify full workflow in browser manually or via more advanced E2E (Selenium/Playwright) if needed.
+2.  Refine simulation logic (actual frame animation instead of placeholder).
+3.  Implement "Player Component" for embedding.

@@ -38,4 +38,29 @@ export class SpriteService {
         const response = await fetch(`${this.baseUrl}/simulate/health`);
         return response.ok;
     }
+
+    async createSprite(name, tags) {
+        const response = await fetch(`${this.baseUrl}/sprites`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name, tags })
+        });
+        if (!response.ok) throw new Error("Failed to create sprite");
+        return await response.json();
+    }
+
+    async addSpriteVersion(spriteId, file) {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('metadata', JSON.stringify({})); // Empty metadata for now
+
+        const response = await fetch(`${this.baseUrl}/sprites/${spriteId}/versions`, {
+            method: 'POST',
+            body: formData
+        });
+        if (!response.ok) throw new Error("Failed to upload version");
+        return await response.json();
+    }
 }
