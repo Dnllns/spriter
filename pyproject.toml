@@ -80,6 +80,7 @@ filterwarnings = [
 
 [dependency-groups]
 dev = [
+    "beautifulsoup4>=4.14.3",
     "types-aiofiles>=25.1.0.20251011",
     "types-python-jose>=3.5.0.20250531",
 ]

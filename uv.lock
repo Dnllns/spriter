@@ -1787,6 +1787,7 @@ test = [
 
 [package.dev-dependencies]
 dev = [
+    { name = "beautifulsoup4" },
     { name = "types-aiofiles" },
     { name = "types-python-jose" },
 ]
@@ -1825,6 +1826,7 @@ provides-extras = ["test", "dev", "docs"]
 
 [package.metadata.requires-dev]
 dev = [
+    { name = "beautifulsoup4", specifier = ">=4.14.3" },
     { name = "types-aiofiles", specifier = ">=25.1.0.20251011" },
     { name = "types-python-jose", specifier = ">=3.5.0.20250531" },
 ]
