@@ -5,6 +5,8 @@ import structlog
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 
 from .domain.exceptions import SpriteNotFoundError, UnauthorizedError
 from .logging_config import setup_logging
@@ -21,6 +23,30 @@ app = FastAPI(
     docs_url="/docs",
     redoc_url="/redoc",
 )
+
+# Mount Static Files
+try:
+    app.mount("/static", StaticFiles(directory="src/static"), name="static")
+except RuntimeError:
+    # Fallback for when running tests or different cwd
+    import os
+
+    app.mount(
+        "/static",
+        StaticFiles(directory=os.path.join(os.path.dirname(__file__), "static")),
+        name="static",
+    )
+
+# Templates
+try:
+    templates = Jinja2Templates(directory="src/templates")
+except Exception:
+    import os
+
+    templates = Jinja2Templates(
+        directory=os.path.join(os.path.dirname(__file__), "templates")
+    )
+
 
 # CORS Configuration
 origins = ["*"]  # For development, tighten in production
@@ -67,6 +93,11 @@ async def logging_middleware(request: Request, call_next):
 
 app.include_router(sprite_router, prefix="/api/v1")
 app.include_router(simulator_router, prefix="/api/v1")
+
+
+@app.get("/", include_in_schema=False)
+async def root(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 
 
 @app.exception_handler(SpriteNotFoundError)

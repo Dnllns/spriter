@@ -30,13 +30,17 @@ This document tracks the current status of the project across different dimensio
 - [x] **Observability**: Implemented Structured Logging with `structlog` and Request ID tracing [HU-006][ADR-0007].
 
 ### Pending (Backlog for Phase 3)
-- [ ] **UI Design**: Wireframes and HTML/CSS structure for the main dashboard.
-- [ ] **Simulator Engine (Frontend)**: Core JavaScript/Canvas logic for sprite animation.
+- [x] **UI Design**: Wireframes and HTML/CSS structure for the main dashboard.
+- [x] **Frontend Architecture**: Structured JS separated into Application (Engine), Domain (Simulation), and Infrastructure (Renderer).
+- [x] **Frontend Implementation**: Dashboard rendering real sprite data structure (Tags, Versions).
+- [x] **Simulator Integration**: "Simulate" button loads sprite image into Canvas engine.
+- [ ] **Simulator Engine (Interactivity)**: Controls for playback, speed, and looping.
 - [ ] **Player Component**: Reusable web component for playback.
 
 ### Blocked / Risks
 - **Dependency**: Real OIDC credentials needed for production.
 
 ### Next Actionable Steps
-1.  Design and implement the `Frontend Dashboard` (Phase 3 UI).
-2.  Implement `Simulator Engine (Frontend)` for animation previews.
+1.  Implement Simulator Controls (Play/Pause, Speed).
+2.  Implement "Upload Sprite" functionality to populate system.
+3.  Add E2E test for full simulation flow (requires seeded data).

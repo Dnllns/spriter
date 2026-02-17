@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spriter - Dashboard</title>
+    <meta name="description" content="Advanced Sprite Repository & Simulator Dashboard">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+                Spriter <span>Pro</span>
+            </div>
+
+            <ul class="nav-menu">
+                <li class="nav-item active" onclick="navigate('dashboard')">
+                    Dashboard
+                </li>
+                <li class="nav-item" onclick="navigate('library')">
+                    Sprite Library
+                </li>
+                <li class="nav-item" onclick="navigate('simulator')">
+                    Simulator
+                </li>
+                <li class="nav-item" onclick="navigate('settings')">
+                    Settings
+                </li>
+            </ul>
+
+            <div style="margin-top: auto">
+                <div class="card" style="padding: var(--spacing-md); font-size: 0.8em; color: var(--color-text-muted);">
+                    <p>Status: <strong>Online</strong></p>
+                    <p>Version: 0.2.6</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area (Dashboard) -->
+        <main id="dashboard-view" class="view main-content">
+            <header class="header animate-fade-in">
+                <div class="page-title">
+                    <h1>Dashboard</h1>
+                    <p>Welcome back, User. Here is your recent activity.</p>
+                </div>
+                <div class="actions">
+                    <button class="btn btn-primary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        Upload Sprite
+                    </button>
+                </div>
+            </header>
+
+            <!-- Stats/Metrics -->
+            <section class="metrics-grid animate-fade-in"
+                style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-lg); margin-bottom: var(--spacing-xl);">
+                <div class="card metric">
+                    <h3>Total Sprites</h3>
+                    <div style="font-size: 2.5rem; font-weight: 700; color: var(--color-primary);">124</div>
+                    <p style="color: var(--color-accent); font-size: 0.9rem;">+12 this week</p>
+                </div>
+                <div class="card metric">
+                    <h3>Storage Used</h3>
+                    <div style="font-size: 2.5rem; font-weight: 700; color: var(--color-warning);">45%</div>
+                    <p style="color: var(--color-text-muted); font-size: 0.9rem;">2.4GB / 5.0GB</p>
+                </div>
+                <div class="card metric">
+                    <h3>API Requests</h3>
+                    <div style="font-size: 2.5rem; font-weight: 700; color: var(--color-text-main);">8.2k</div>
+                    <p style="color: var(--color-text-muted); font-size: 0.9rem;">Last 24 hours</p>
+                </div>
+            </section>
+
+            <!-- Recent Sprites Grid -->
+            <section class="recent-uploads animate-fade-in" style="animation-delay: 0.1s;">
+                <h2 style="margin-bottom: var(--spacing-lg);">Recent Uploads</h2>
+
+                <div class="sprites-grid">
+                    <!-- Placeholder Item 1 -->
+                    <div class="card sprite-card">
+                        <div class="sprite-preview">
+                            <svg width="48" height="48" viewBox="0 0 24 24" stroke="var(--color-text-muted)" fill="none"
+                                stroke-width="1">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                                <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                            </svg>
+                        </div>
+                        <div class="sprite-meta">
+                            <h3>Hero_Idle_01</h3>
+                            <div style="display: flex; gap: 8px; margin-top: 8px;">
+                                <span class="tag">Character</span>
+                                <span class="tag">64x64</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Placeholder Item 2 -->
+                    <div class="card sprite-card">
+                        <div class="sprite-preview">
+                            <svg width="48" height="48" viewBox="0 0 24 24" stroke="var(--color-text-muted)" fill="none"
+                                stroke-width="1">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="9" y1="21" x2="9" y2="9"></line>
+                            </svg>
+                        </div>
+                        <div class="sprite-meta">
+                            <h3>Tileset_Dungeon</h3>
+                            <div style="display: flex; gap: 8px; margin-top: 8px;">
+                                <span class="tag">Environment</span>
+                                <span class="tag">32x32</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Placeholder Item 3 -->
+                    <div class="card sprite-card">
+                        <div class="sprite-preview">
+                            <svg width="48" height="48" viewBox="0 0 24 24" stroke="var(--color-text-muted)" fill="none"
+                                stroke-width="1">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                                <path d="M2 17l10 5 10-5"></path>
+                                <path d="M2 12l10 5 10-5"></path>
+                            </svg>
+                        </div>
+                        <div class="sprite-meta">
+                            <h3>FX_Explosion</h3>
+                            <div style="display: flex; gap: 8px; margin-top: 8px;">
+                                <span class="tag">VFX</span>
+                                <span class="tag">128x128</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Simulator View (Hidden by default) -->
+        <div id="simulator-view" class="view hidden" style="grid-area: main; padding: var(--spacing-xl);">
+            <header class="header animate-fade-in">
+                <div class="page-title">
+                    <h1>Simulator</h1>
+                    <p>Physics and animation preview playground.</p>
+                </div>
+                <div class="actions">
+                    <button class="btn btn-primary" onclick="window.simulator.start()">Start</button>
+                    <button class="btn" onclick="window.simulator.stop()">Stop</button>
+                </div>
+            </header>
+
+            <div class="card" style="padding: 0; overflow: hidden; height: 600px; position: relative;">
+                <canvas id="sim-canvas" width="800" height="600"
+                    style="width: 100%; height: 100%; background: #000;"></canvas>
+            </div>
+        </div>
+
+    </div>
+    <script type="module" src="/static/js/main.js"></script>
+</body>
+
+</html>
