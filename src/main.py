@@ -1,5 +1,6 @@
 import time
 import uuid
+from contextlib import asynccontextmanager
 
 import structlog
 from fastapi import FastAPI, Request
@@ -9,6 +10,10 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 from .domain.exceptions import SpriteNotFoundError, UnauthorizedError
+
+# Ensure models are imported so tables are registered
+from .infrastructure import models  # noqa: F401
+from .infrastructure.database import Base, engine
 from .logging_config import setup_logging
 from .presentation.routers import router as sprite_router
 from .presentation.simulator_router import router as simulator_router
@@ -16,12 +21,22 @@ from .presentation.simulator_router import router as simulator_router
 setup_logging()
 logger = structlog.get_logger()
 
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Create tables on startup if they don't exist
+    logger.info("Initializing database tables...")
+    Base.metadata.create_all(bind=engine)
+    yield
+
+
 app = FastAPI(
     title="Spriter API",
     description="Advanced Sprite Repository & Simulator",
     version="0.1.0",
     docs_url="/docs",
     redoc_url="/redoc",
+    lifespan=lifespan,
 )
 
 # Mount Static Files

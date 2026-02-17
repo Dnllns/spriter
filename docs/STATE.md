@@ -42,6 +42,10 @@ This document tracks the current status of the project across different dimensio
 - **Dependency**: Real OIDC credentials needed for production.
 
 ### Next Actionable Steps
-1.  Verify full workflow in browser manually or via more advanced E2E (Selenium/Playwright) if needed.
-2.  Refine simulation logic (actual frame animation instead of placeholder).
-3.  Implement "Player Component" for embedding.
+1.  Verify full workflow in browser manually or via more advanced E2E (`Selenium`/`Playwright`) if needed.
+2.  Refine `SimulationLogic` (actual frame animation instead of placeholder).
+3.  Implement `Player Component` for embedding.
+
+### Quality Assurance
+- [ ] Pipeline Green: Verify using `gh run list`.
+- [ ] Adhere to `docs/RULES.md`: Check and fix any CI failures before new work.
