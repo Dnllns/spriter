@@ -41,6 +41,6 @@ This document tracks the current status of the project across different dimensio
 - **Dependency**: Real OIDC credentials needed for production.
 
 ### Next Actionable Steps
-1.  Implement Simulator Controls (Play/Pause, Speed).
-2.  Implement "Upload Sprite" functionality to populate system.
-3.  Add E2E test for full simulation flow (requires seeded data).
+1.  Implement `Simulator Controls` (Play/Pause, Speed) in `src/static/js/ui/simulator.js`.
+2.  Implement "Upload Sprite" functionality using `python-multipart` to populate system.
+3.  Add `E2E` test for full simulation flow (requires seeded data).
