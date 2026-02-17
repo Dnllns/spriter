@@ -3,7 +3,7 @@ import uuid
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from ..domain.entities import Sprite, SpriteVersion
+from ..domain.entities import Animation, Sprite, SpriteVersion
 from ..domain.ports import SpriteRepository
 from .models import SpriteModel, SpriteVersionModel
 
@@ -80,7 +80,7 @@ class SqlAlchemySpriteRepository(SpriteRepository):
                 version=v.version_number,
                 image_url=v.image_url,
                 metadata=v.metadata_json,
-                animations=v.animations_json,
+                animations=[Animation(**a) for a in v.animations_json],
                 created_at=v.created_at,
                 changelog=v.changelog,
             )

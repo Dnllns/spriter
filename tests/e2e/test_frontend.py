@@ -15,11 +15,22 @@ class TestFrontendIntegration:
     def setup_method(self):
         self.client = TestClient(app)
 
-    def test_dashboard_renders_ok(self):
+    def test_landing_page_renders_ok(self):
         """
-        Verify that the root endpoint returns 200 OK and valid HTML.
+        Verify that the root endpoint returns the landing page.
         """
         response = self.client.get("/")
+        assert response.status_code == 200
+        assert "text/html" in response.headers["content-type"]
+        soup = BeautifulSoup(response.text, "html.parser")
+        assert "Spriter | The Future" in soup.select_one("title").text
+        assert soup.select_one(".landing-hero") is not None
+
+    def test_dashboard_renders_ok(self):
+        """
+        Verify that the /dashboard endpoint returns the dashboard.
+        """
+        response = self.client.get("/dashboard")
         assert response.status_code == 200
         assert "text/html" in response.headers["content-type"]
 

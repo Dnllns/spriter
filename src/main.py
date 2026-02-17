@@ -112,6 +112,11 @@ app.include_router(simulator_router, prefix="/api/v1")
 
 @app.get("/", include_in_schema=False)
 async def root(request: Request):
+    return templates.TemplateResponse("landing.html", {"request": request})
+
+
+@app.get("/dashboard", include_in_schema=False)
+async def dashboard(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
 
