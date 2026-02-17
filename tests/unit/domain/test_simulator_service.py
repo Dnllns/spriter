@@ -1,6 +1,7 @@
 import uuid
-from src.domain.simulator import SimulatorService, SimulationConfig
+
 from src.domain.entities import Animation, Frame
+from src.domain.simulator import SimulationConfig, SimulatorService
 
 
 class TestSimulatorService:

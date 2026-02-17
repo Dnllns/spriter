@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-17T21:22:03.497139",
+  "generated_at": "2026-02-17T21:30:22.905079",
   "project": "Spriter",
   "vision": "Advanced Sprite Repository & Simulator (Clean Arch, Full Python)",
   "current_phase": {
@@ -9,16 +9,15 @@
   },
   "knowledge_status": {
     "latest_adr": "0007-structured-logging.md",
-    "pending_items_count": 3,
+    "pending_items_count": 2,
     "next_steps_count": 3
   },
   "next_steps": [
-    "1.  Implement View Switching (Dashboard <-> Simulator) [Done].",
-    "2.  Integrate `SimulatorService` API with Frontend.",
-    "3.  Connect `SpriteService` to real backend data."
+    "1.  Implement `Simulator Controls` (Play/Pause, Speed) in `src/static/js/ui/simulator.js`.",
+    "2.  Implement \"Upload Sprite\" functionality using `python-multipart` to populate system.",
+    "3.  Add `E2E` test for full simulation flow (requires seeded data)."
   ],
   "pending_features": [
-    "**Frontend Implementation**: Connect Dashboard to real API endpoints (Wiring in progress).",
     "**Simulator Engine (Interactivity)**: Controls for playback, speed, and looping.",
     "**Player Component**: Reusable web component for playback."
   ]
