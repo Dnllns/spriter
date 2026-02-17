@@ -8,3 +8,7 @@ spriter.db
 dist/
 build/
 docs/_build/
+.venv
+spriter.db
+.coverage
+__pycache__
