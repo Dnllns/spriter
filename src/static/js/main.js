@@ -203,6 +203,7 @@ class App {
 <script type="module" src="${scriptUrl}"></script>
 <spriter-player 
   sprite-id="${this.currentSimulatedSpriteId}" 
+  base-url="${origin}"
   width="400" 
   height="400" 
   speed="1.0">

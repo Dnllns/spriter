@@ -13,7 +13,7 @@ export class SpriterPlayer extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ['sprite-id', 'speed', 'scale', 'width', 'height'];
+        return ['sprite-id', 'speed', 'scale', 'width', 'height', 'base-url'];
     }
 
     async connectedCallback() {
@@ -41,8 +41,10 @@ export class SpriterPlayer extends HTMLElement {
     }
 
     async loadSprite(spriteId) {
+        const baseUrl = (this.getAttribute('base-url') || '').replace(/\/$/, '');
         try {
-            const response = await fetch(`/api/v1/sprites/${spriteId}`);
+            const fetchUrl = spriteId.startsWith('http') ? spriteId : `${baseUrl}/api/v1/sprites/${spriteId}`;
+            const response = await fetch(fetchUrl);
             if (!response.ok) throw new Error("Failed to fetch sprite");
             const spriteData = await response.json();
 
@@ -55,7 +57,11 @@ export class SpriterPlayer extends HTMLElement {
 
             if (latestVersion && latestVersion.image_url) {
                 const img = new Image();
-                img.src = latestVersion.image_url;
+                const imgUrl = latestVersion.image_url.startsWith('http')
+                    ? latestVersion.image_url
+                    : `${baseUrl}${latestVersion.image_url.startsWith('/') ? '' : '/'}${latestVersion.image_url}`;
+
+                img.src = imgUrl;
                 await new Promise((res, rej) => {
                     img.onload = res;
                     img.onerror = rej;
