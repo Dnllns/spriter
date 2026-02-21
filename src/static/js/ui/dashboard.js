@@ -48,10 +48,13 @@ export class DashboardUI {
                     </div>
                 </div>
                 <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
-                     <!-- Add Simulate Interaction -->
                      <button class="btn" style="flex: 1; font-size: 0.8rem; padding: 0.5rem;" 
                         onclick="window.app.loadSpriteInSimulator('${sprite.id}')">
                         Simulate
+                     </button>
+                     <button class="btn" style="flex: 1; font-size: 0.8rem; padding: 0.5rem;" 
+                        onclick="window.navigate('library', { spriteId: '${sprite.id}' })">
+                        Inspect
                      </button>
                 </div>
             </div>
