@@ -57,11 +57,10 @@ class App {
 
     setupNavigation() {
         // Expose navigation globally for simple onclick handlers
-        window.navigate = (page) => {
-            console.log(`Navigating to ${page}...`);
+        window.navigate = (page, params = null) => {
+            console.log(`Navigating to ${page}...`, params);
 
             // 1. Update Active Nav Item based on the clicked element
-            // This is brittle with inline onclick, but for MVP Phase 3 it's fine.
             const clickedElement = event ? event.currentTarget : null;
             if (clickedElement && clickedElement.classList.contains('nav-item')) {
                 document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
@@ -80,7 +79,7 @@ class App {
             } else if (page === 'library') {
                 document.getElementById('library-view').classList.remove('hidden');
                 this.simulator.stop();
-                this.loadLibraryContent();
+                this.loadLibraryContent(params ? params.spriteId : null);
             } else {
                 // Fallback
                 console.warn("View not found for:", page);
@@ -89,13 +88,28 @@ class App {
         };
     }
 
-    async loadLibraryContent() {
+    async loadLibraryContent(filterSpriteId = null) {
         const container = document.getElementById('frames-container');
         container.innerHTML = '<div style="grid-column: 1/-1; text-align: center;">Loading frames...</div>';
 
         try {
-            const sprites = await this.spriteService.getSprites();
+            let sprites = [];
+            if (filterSpriteId) {
+                const sprite = await this.spriteService.getSprite(filterSpriteId);
+                sprites = [sprite];
+            } else {
+                sprites = await this.spriteService.getSprites();
+            }
+
             container.innerHTML = '';
+            // Add a Back button if filtered
+            if (filterSpriteId) {
+                const backBtnDiv = document.createElement('div');
+                backBtnDiv.style.gridColumn = '1/-1';
+                backBtnDiv.style.marginBottom = '1rem';
+                backBtnDiv.innerHTML = `<button class="btn" onclick="window.navigate('library')">← Show All Sprites</button>`;
+                container.appendChild(backBtnDiv);
+            }
 
             sprites.forEach(sprite => {
                 const latestVersion = sprite.versions && sprite.versions.length > 0
@@ -109,12 +123,12 @@ class App {
                                 const card = document.createElement('div');
                                 card.className = 'card sprite-card';
                                 card.innerHTML = `
-                                    <div class="sprite-preview">
+                                    <div class="sprite-preview" style="height: 120px;">
                                         <img src="${frame.image_location}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
                                     </div>
                                     <div class="sprite-meta">
-                                        <h3 style="font-size: 0.9rem;">${sprite.name}</h3>
-                                        <p style="font-size: 0.7rem; color: var(--color-text-muted);">Frame ${frame.index} - ${anim.name}</p>
+                                        <h3 style="font-size: 0.8rem;">${sprite.name}</h3>
+                                        <p style="font-size: 0.65rem; color: var(--color-text-muted);">F${frame.index} - ${anim.name}</p>
                                     </div>
                                 `;
                                 container.appendChild(card);
@@ -124,8 +138,8 @@ class App {
                 }
             });
 
-            if (container.children.length === 0) {
-                container.innerHTML = '<div style="grid-column: 1/-1; text-align: center;">No individual frames found. Try uploading a sprite with dimensions.</div>';
+            if (container.children.length === 0 || (filterSpriteId && container.children.length === 1)) {
+                container.innerHTML += '<div style="grid-column: 1/-1; text-align: center;">No individual frames found. Try uploading a sprite with grid dimensions.</div>';
             }
         } catch (error) {
             console.error("Failed to load library content:", error);
