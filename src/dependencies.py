@@ -43,6 +43,18 @@ async def get_current_user(
     return await auth.authenticate(token)
 
 
+async def get_current_user_optional(
+    token: str = Depends(oauth2_scheme),
+    auth: AuthenticatorPort = Depends(get_authenticator),
+) -> User | None:
+    if not token:
+        return None
+    try:
+        return await auth.authenticate(token)
+    except Exception:
+        return None
+
+
 def get_repository(db: Session = Depends(get_db)) -> SpriteRepository:
     return SqlAlchemySpriteRepository(db)
 

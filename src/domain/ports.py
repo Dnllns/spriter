@@ -14,7 +14,9 @@ class SpriteRepository(ABC):
         pass
 
     @abstractmethod
-    async def list(self, limit: int = 10, offset: int = 0) -> list[Sprite]:
+    async def list(
+        self, limit: int = 10, offset: int = 0, is_public: bool | None = None
+    ) -> list[Sprite]:
         pass
 
     @abstractmethod

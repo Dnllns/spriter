@@ -97,5 +97,9 @@ class SpriteService:
             raise SpriteNotFoundError(sprite_id)
         return sprite
 
-    async def list_sprites(self, limit: int = 10, offset: int = 0) -> list[Sprite]:
-        return await self.repo.list(limit, offset)
+    async def list_sprites(
+        self, limit: int = 10, offset: int = 0, only_public: bool = False
+    ) -> list[Sprite]:
+        return await self.repo.list(
+            limit, offset, is_public=True if only_public else None
+        )

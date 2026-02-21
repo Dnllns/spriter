@@ -15,8 +15,12 @@ class InMemorySpriteRepository(SpriteRepository):
     async def get(self, sprite_id: uuid.UUID) -> Sprite | None:
         return self._sprites.get(sprite_id)
 
-    async def list(self, limit: int = 10, offset: int = 0) -> list[Sprite]:
+    async def list(
+        self, limit: int = 10, offset: int = 0, is_public: bool | None = None
+    ) -> list[Sprite]:
         all_sprites = list(self._sprites.values())
+        if is_public is not None:
+            all_sprites = [s for s in all_sprites if s.is_public == is_public]
         return all_sprites[offset : offset + limit]
 
     async def save(self, sprite: Sprite) -> Sprite:
