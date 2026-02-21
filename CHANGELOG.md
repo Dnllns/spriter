@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.5.0] - 2026-02-21
+
+### Added
+- **Analytics Service**: Real-time play tracking for embedded sprites via `<spriter-player>`.
+- **Frame Browser**: Individual frame inspection and library view with filtering.
+- **Privacy Controls**: Full integration of `is_public` logic in API and repositories.
+- **Improved UI**: "Inspect" button on dashboard cards and "Library" navigation.
+
 ## [0.4.0] - 2026-02-21
 
 ### Added
