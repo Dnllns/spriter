@@ -13,7 +13,7 @@ from fastapi import (
 
 from ..application.dto import AddVersionRequest, CreateSpriteRequest
 from ..application.services import SpriteService
-from ..dependencies import get_current_user, get_service
+from ..dependencies import get_current_user, get_current_user_optional, get_service
 from ..domain.entities import Sprite, SpriteVersion, User
 from ..domain.exceptions import UnauthorizedError
 
@@ -34,15 +34,24 @@ async def list_sprites(
     limit: int = Query(10, gt=0, le=100),
     offset: int = Query(0, ge=0),
     service: SpriteService = Depends(get_service),
+    current_user: User | None = Depends(get_current_user_optional),
 ):
-    return await service.list_sprites(limit, offset)
+    only_public = current_user is None
+    return await service.list_sprites(limit, offset, only_public=only_public)
 
 
 @router.get("/sprites/{sprite_id}", response_model=Sprite)
 async def get_sprite(
-    sprite_id: uuid.UUID, service: SpriteService = Depends(get_service)
+    sprite_id: uuid.UUID,
+    service: SpriteService = Depends(get_service),
+    current_user: User | None = Depends(get_current_user_optional),
 ):
-    return await service.get_sprite(sprite_id)
+    sprite = await service.get_sprite(sprite_id)
+    if not sprite.is_public and (
+        not current_user or sprite.author_id != current_user.id
+    ):
+        raise UnauthorizedError("You are not allowed to view this private sprite")
+    return sprite
 
 
 @router.post(

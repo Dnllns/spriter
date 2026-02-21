@@ -38,8 +38,13 @@ class SqlAlchemySpriteRepository(SpriteRepository):
             return None
         return self._to_domain(db_sprite)
 
-    async def list(self, limit: int = 10, offset: int = 0) -> list[Sprite]:
-        stmt = select(SpriteModel).offset(offset).limit(limit)
+    async def list(
+        self, limit: int = 10, offset: int = 0, is_public: bool | None = None
+    ) -> list[Sprite]:
+        stmt = select(SpriteModel)
+        if is_public is not None:
+            stmt = stmt.where(SpriteModel.is_public == is_public)
+        stmt = stmt.offset(offset).limit(limit)
         result = self.db.execute(stmt).scalars().all()
         return [self._to_domain(s) for s in result]
 
