@@ -106,10 +106,22 @@ export class SpriterPlayer extends HTMLElement {
 
                 this.state.addEntity(entity);
                 this._centerEntity(entity);
+
+                // Track play event
+                this._trackPlay(spriteId);
             }
         } catch (error) {
             console.error("SpriterPlayer: Error loading sprite", error);
         }
+    }
+
+    async _trackPlay(spriteId) {
+        if (!spriteId || spriteId.startsWith('http')) return;
+        const baseUrl = (this.getAttribute('base-url') || '').replace(/\/$/, '');
+        const trackUrl = `${baseUrl}/api/v1/analytics/sprites/${spriteId}/play`;
+        try {
+            fetch(trackUrl, { method: 'POST' }).catch(() => { });
+        } catch (e) { }
     }
 
     _centerEntity(entity) {

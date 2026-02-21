@@ -17,6 +17,7 @@ from .domain.exceptions import SpriteNotFoundError, UnauthorizedError
 from .infrastructure import models  # noqa: F401
 from .infrastructure.database import Base, engine
 from .logging_config import setup_logging
+from .presentation.analytics_router import router as analytics_router
 from .presentation.routers import router as sprite_router
 from .presentation.simulator_router import router as simulator_router
 
@@ -118,6 +119,7 @@ async def logging_middleware(request: Request, call_next):
 
 app.include_router(sprite_router, prefix="/api/v1")
 app.include_router(simulator_router, prefix="/api/v1")
+app.include_router(analytics_router, prefix="/api/v1")
 
 
 @app.get("/", include_in_schema=False)

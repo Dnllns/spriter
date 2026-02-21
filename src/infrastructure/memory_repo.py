@@ -22,3 +22,7 @@ class InMemorySpriteRepository(SpriteRepository):
     async def save(self, sprite: Sprite) -> Sprite:
         self._sprites[sprite.id] = sprite
         return sprite
+
+    async def increment_play_count(self, sprite_id: uuid.UUID) -> None:
+        if sprite_id in self._sprites:
+            self._sprites[sprite_id].play_count += 1
