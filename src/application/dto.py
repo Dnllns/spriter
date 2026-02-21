@@ -7,6 +7,7 @@ class CreateSpriteRequest(BaseModel):
     name: str
     description: str | None = None
     tags: list[str] = []
+    is_public: bool = True
 
 
 class AddVersionRequest(BaseModel):

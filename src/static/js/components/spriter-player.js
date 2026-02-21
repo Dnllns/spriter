@@ -67,6 +67,31 @@ export class SpriterPlayer extends HTMLElement {
                     img.onerror = rej;
                 });
 
+                // Preload individual frames if they exist
+                if (latestVersion.animations) {
+                    for (const anim of latestVersion.animations) {
+                        for (const frame of anim.frames) {
+                            if (frame.image_location) {
+                                const frameImg = new Image();
+                                const frameUrl = frame.image_location.startsWith('http')
+                                    ? frame.image_location
+                                    : `${baseUrl}${frame.image_location.startsWith('/') ? '' : '/'}${frame.image_location}`;
+
+                                frameImg.src = frameUrl;
+                                // We don't necessarily block on every frame but it's safer
+                                await new Promise((res) => {
+                                    frameImg.onload = res;
+                                    frameImg.onerror = () => {
+                                        console.warn("Failed to load frame image", frameUrl);
+                                        res(); // Continue anyway
+                                    };
+                                });
+                                frame.image_obj = frameImg;
+                            }
+                        }
+                    }
+                }
+
                 // Default entity wrapper
                 const entity = {
                     x: 0, y: 0,

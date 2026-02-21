@@ -20,6 +20,7 @@ class SqlAlchemySpriteRepository(SpriteRepository):
             author_id=sprite.author_id,
             status=sprite.status,
             tags=sprite.tags,
+            is_public=sprite.is_public,
             created_at=sprite.created_at,
             updated_at=sprite.updated_at,
         )
@@ -51,6 +52,7 @@ class SqlAlchemySpriteRepository(SpriteRepository):
             db_sprite.description = sprite.description
             db_sprite.updated_at = sprite.updated_at
             db_sprite.tags = sprite.tags
+            db_sprite.is_public = sprite.is_public
 
             # Sync versions - rudimentary approach: add missing versions
             # In a real app, careful diffing is needed
@@ -96,6 +98,7 @@ class SqlAlchemySpriteRepository(SpriteRepository):
             author_id=model.author_id,
             status=model.status,
             tags=model.tags if model.tags else [],
+            is_public=model.is_public,
             created_at=model.created_at,
             updated_at=model.updated_at,
             versions=domain_versions,

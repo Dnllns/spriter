@@ -77,12 +77,60 @@ class App {
             } else if (page === 'dashboard') {
                 document.getElementById('dashboard-view').classList.remove('hidden');
                 this.simulator.stop();
+            } else if (page === 'library') {
+                document.getElementById('library-view').classList.remove('hidden');
+                this.simulator.stop();
+                this.loadLibraryContent();
             } else {
                 // Fallback
                 console.warn("View not found for:", page);
                 document.getElementById('dashboard-view').classList.remove('hidden');
             }
         };
+    }
+
+    async loadLibraryContent() {
+        const container = document.getElementById('frames-container');
+        container.innerHTML = '<div style="grid-column: 1/-1; text-align: center;">Loading frames...</div>';
+
+        try {
+            const sprites = await this.spriteService.getSprites();
+            container.innerHTML = '';
+
+            sprites.forEach(sprite => {
+                const latestVersion = sprite.versions && sprite.versions.length > 0
+                    ? sprite.versions[sprite.versions.length - 1]
+                    : null;
+
+                if (latestVersion && latestVersion.animations) {
+                    latestVersion.animations.forEach(anim => {
+                        anim.frames.forEach(frame => {
+                            if (frame.image_location) {
+                                const card = document.createElement('div');
+                                card.className = 'card sprite-card';
+                                card.innerHTML = `
+                                    <div class="sprite-preview">
+                                        <img src="${frame.image_location}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                                    </div>
+                                    <div class="sprite-meta">
+                                        <h3 style="font-size: 0.9rem;">${sprite.name}</h3>
+                                        <p style="font-size: 0.7rem; color: var(--color-text-muted);">Frame ${frame.index} - ${anim.name}</p>
+                                    </div>
+                                `;
+                                container.appendChild(card);
+                            }
+                        });
+                    });
+                }
+            });
+
+            if (container.children.length === 0) {
+                container.innerHTML = '<div style="grid-column: 1/-1; text-align: center;">No individual frames found. Try uploading a sprite with dimensions.</div>';
+            }
+        } catch (error) {
+            console.error("Failed to load library content:", error);
+            container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--color-danger);">Error loading frames.</div>';
+        }
     }
     async loadSpriteInSimulator(spriteId) {
         console.log("Requesting simulation for sprite:", spriteId);

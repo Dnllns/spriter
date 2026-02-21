@@ -60,6 +60,7 @@ class Sprite(BaseModel):
     author_id: str
     tags: list[str] = Field(default_factory=list)
     status: SpriteStatus = SpriteStatus.DRAFT
+    is_public: bool = Field(default=True)
     versions: list[SpriteVersion] = Field(default_factory=list)
     created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
     updated_at: datetime = Field(default_factory=lambda: datetime.now(UTC))

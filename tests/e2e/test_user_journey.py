@@ -77,7 +77,7 @@ class TestSimulationFlow:
             assert version_data["animations"][0]["name"] == "idle"
 
             # 3. Verify it appears in Dashboard List (GET /sprites)
-            list_resp = client.get("/api/v1/sprites", headers=auth_headers)
+            list_resp = client.get("/api/v1/sprites?limit=100", headers=auth_headers)
             assert list_resp.status_code == 200
             sprites_list = list_resp.json()
 
@@ -90,6 +90,7 @@ class TestSimulationFlow:
                     if "versions" in s:
                         assert len(s["versions"]) >= 1
                     break
+            print("\nSPRITES LIST:", sprites_list)
             assert found, "Created sprite not found in list"
 
             # 4. Verify Detail Fetch (GET /sprites/{id})

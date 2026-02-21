@@ -151,6 +151,26 @@
             </section>
         </main>
 
+        <!-- Library View (Added for Frame Categorization) -->
+        <main id="library-view" class="view hidden main-content">
+            <header class="header animate-fade-in">
+                <div class="page-title">
+                    <h1>Sprite Library</h1>
+                    <p>Global view of all categorized frames and assets.</p>
+                </div>
+            </header>
+
+            <section class="library-grid animate-fade-in">
+                <div id="frames-container" class="sprites-grid">
+                    <!-- Frames will be rendered here -->
+                    <div
+                        style="text-align: center; color: var(--color-text-muted); grid-column: 1 / -1; padding: 2rem;">
+                        Select a sprite to see its individual frames.
+                    </div>
+                </div>
+            </section>
+        </main>
+
         <!-- Simulator View (Hidden by default) -->
         <div id="simulator-view" class="view hidden" style="grid-area: main; padding: var(--spacing-xl);">
             <header class="header animate-fade-in">

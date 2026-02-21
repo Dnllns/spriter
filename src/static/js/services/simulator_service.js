@@ -38,7 +38,7 @@ export class SimulatorService {
             : null;
 
         if (latestVersion && latestVersion.image_url) {
-            // Load image asynchronously
+            // Load main image (bundle)
             const img = new Image();
             img.src = latestVersion.image_url;
 
@@ -47,20 +47,33 @@ export class SimulatorService {
                 img.onerror = reject;
             });
 
-            // Extract animation if present
-            let animation = null;
-            if (latestVersion.animations && latestVersion.animations.length > 0) {
-                // For now, just pick the first one (usually IDLE)
-                animation = latestVersion.animations[0];
-            } else {
-                // Default: one frame showing the whole image
-                animation = {
-                    name: 'default',
-                    fps: 1,
-                    frames: [{ x: 0, y: 0, w: img.width, h: img.height }],
-                    loop: true
-                };
+            // Extract animation
+            let animations = latestVersion.animations || [];
+
+            // Preload frame images if they exist
+            for (const anim of animations) {
+                for (const frame of anim.frames) {
+                    if (frame.image_location) {
+                        const frameImg = new Image();
+                        frameImg.src = frame.image_location;
+                        await new Promise((res) => {
+                            frameImg.onload = res;
+                            frameImg.onerror = () => {
+                                console.warn("Failed to load frame image", frame.image_location);
+                                res();
+                            };
+                        });
+                        frame.image_obj = frameImg;
+                    }
+                }
             }
+
+            let animation = animations.length > 0 ? animations[0] : {
+                name: 'default',
+                fps: 1,
+                frames: [{ x: 0, y: 0, w: img.width, h: img.height }],
+                loop: true
+            };
 
             // Add entity with image property and animation
             this.engine.addEntity({

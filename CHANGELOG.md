@@ -2,9 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.3.0] - 2026-02-18
+## [0.4.0] - 2026-02-21
 
 ### Added
+- **Public/Private Flags**: Added `is_public` field to `Sprite` entity and database models.
+- **Mobile Optimization**: Refined `@media` queries in `styles.css` for small screens.
+
+## [0.3.0] - 2026-02-18
 - **Frontend Architecture**: Implemented Clean Architecture for the frontend (Application, Domain, Infrastructure, Service layers).
 - **Simulator Integration**: Integrated `SimulatorEngine` (HTML5 Canvas) with `SimulatorService` and `DashboardUI`.
 - **View Switching**: Implemented client-side navigation between "Dashboard" and "Simulator" views.

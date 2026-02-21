@@ -28,6 +28,10 @@ This document tracks the current status of the project across different dimensio
 - [x] **Simulator API**: POST /simulate endpoint implemented and tested.
 - [x] **API Robustness**: Added strict pagination validation and global error handling [HU-005].
 - [x] **Observability**: Implemented Structured Logging with `structlog` and Request ID tracing [HU-006][ADR-0007].
+- [x] **Frame-based Storage**: Implemented backend slicing of sprite sheets into individual frame files (De-bundling) [HU-007].
+- [x] **Embeddable Player**: Standing `<spriter-player>` Web Component with CORS/Base-URL support.
+- [x] **Public/Private Flags**: Add `is_public` field to `Sprite` entity and database models.
+- [x] **Mobile Optimization**: Refine `@media` queries in `index.css` for small screens.
 
 ### Pending (Backlog for Phase 3)
 - [x] **UI Design**: Sidebar, Dashboard grid, and Glassy aesthetics.
@@ -43,9 +47,8 @@ This document tracks the current status of the project across different dimensio
 - **Dependency**: Real OIDC credentials needed for production.
 
 ### Next Actionable Steps
-1.  **Mobile Optimization**: Refine `@media` queries in `index.css` for small screens.
-2.  **Public/Private Flags**: Add `is_public` field to `Sprite` entity and database models.
-3.  **Analytics**: Implement a new `AnalyticsService` to track plays of embedded sprites.
+1. **Analytics**: Implement a new `AnalyticsService` to track plays of embedded sprites.
+2. **Frame Browser**: Implement a UI section to browse and manage individual frames per sprite.
 
 ### Quality Assurance
 - [ ] Pipeline Green: Verify using `gh run list`.
