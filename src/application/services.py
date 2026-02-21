@@ -22,6 +22,7 @@ class SpriteService:
             description=request.description,
             tags=request.tags,
             author_id=author_id,
+            is_public=request.is_public,
         )
         await self.repo.add(sprite)
         return sprite

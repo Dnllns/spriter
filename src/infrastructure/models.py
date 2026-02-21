@@ -4,6 +4,7 @@ from typing import List, Optional
 
 from sqlalchemy import (
     JSON,
+    Boolean,
     DateTime,
     ForeignKey,
     Integer,
@@ -30,6 +31,7 @@ class SpriteModel(Base):
     status: Mapped[SpriteStatus] = mapped_column(
         SAEnum(SpriteStatus), default=SpriteStatus.DRAFT
     )
+    is_public: Mapped[bool] = mapped_column(Boolean, default=True, server_default="1")
     tags: Mapped[List[str]] = mapped_column(JSON, default=list)
     created_at: Mapped[datetime] = mapped_column(
         DateTime, default=lambda: datetime.now(UTC)
