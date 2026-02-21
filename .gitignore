@@ -1,5 +1,7 @@
 .venv/
+.venv
 __pycache__/
+__pycache__
 *.pyc
 .pytest_cache/
 .coverage
@@ -8,7 +10,5 @@ spriter.db
 dist/
 build/
 docs/_build/
-.venv
-spriter.db
-.coverage
-__pycache__
+.vscode/
+.vscode
