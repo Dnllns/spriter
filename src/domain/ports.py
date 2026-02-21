@@ -22,6 +22,11 @@ class SpriteRepository(ABC):
         """Update existing or save new"""
         pass
 
+    @abstractmethod
+    async def increment_play_count(self, sprite_id: uuid.UUID) -> None:
+        """Increment the play counter for the given sprite."""
+        pass
+
 
 class StoragePort(ABC):
     @abstractmethod

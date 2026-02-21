@@ -2,6 +2,7 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 
+from .application.analytics import AnalyticsService
 from .application.services import SpriteService
 from .config import settings
 from .domain.ports import AuthenticatorPort, SpriteRepository, StoragePort, User
@@ -51,3 +52,9 @@ def get_service(
     storage: StoragePort = Depends(get_storage),
 ) -> SpriteService:
     return SpriteService(repo, storage)
+
+
+def get_analytics_service(
+    repo: SpriteRepository = Depends(get_repository),
+) -> AnalyticsService:
+    return AnalyticsService(repo)

@@ -44,6 +44,7 @@ export class DashboardUI {
                     <div style="display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap;">
                         ${tagsHtml}
                         <span class="tag">v${versionCount}</span>
+                        <span class="tag">▶ ${sprite.play_count || 0}</span>
                     </div>
                 </div>
                 <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">

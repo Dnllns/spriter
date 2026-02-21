@@ -21,6 +21,7 @@ class SqlAlchemySpriteRepository(SpriteRepository):
             status=sprite.status,
             tags=sprite.tags,
             is_public=sprite.is_public,
+            play_count=sprite.play_count,
             created_at=sprite.created_at,
             updated_at=sprite.updated_at,
         )
@@ -53,6 +54,7 @@ class SqlAlchemySpriteRepository(SpriteRepository):
             db_sprite.updated_at = sprite.updated_at
             db_sprite.tags = sprite.tags
             db_sprite.is_public = sprite.is_public
+            db_sprite.play_count = sprite.play_count
 
             # Sync versions - rudimentary approach: add missing versions
             # In a real app, careful diffing is needed
@@ -75,6 +77,14 @@ class SqlAlchemySpriteRepository(SpriteRepository):
             self.db.commit()
             self.db.refresh(db_sprite)
         return sprite
+
+    async def increment_play_count(self, sprite_id: uuid.UUID) -> None:
+        db_sprite = (
+            self.db.query(SpriteModel).filter(SpriteModel.id == str(sprite_id)).first()
+        )
+        if db_sprite:
+            db_sprite.play_count += 1
+            self.db.commit()
 
     def _to_domain(self, model: SpriteModel) -> Sprite:
         domain_versions = [
@@ -99,6 +109,7 @@ class SqlAlchemySpriteRepository(SpriteRepository):
             status=model.status,
             tags=model.tags if model.tags else [],
             is_public=model.is_public,
+            play_count=model.play_count,
             created_at=model.created_at,
             updated_at=model.updated_at,
             versions=domain_versions,

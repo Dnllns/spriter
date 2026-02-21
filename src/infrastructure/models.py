@@ -32,6 +32,7 @@ class SpriteModel(Base):
         SAEnum(SpriteStatus), default=SpriteStatus.DRAFT
     )
     is_public: Mapped[bool] = mapped_column(Boolean, default=True, server_default="1")
+    play_count: Mapped[int] = mapped_column(Integer, default=0, server_default="0")
     tags: Mapped[List[str]] = mapped_column(JSON, default=list)
     created_at: Mapped[datetime] = mapped_column(
         DateTime, default=lambda: datetime.now(UTC)
