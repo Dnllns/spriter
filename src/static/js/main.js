@@ -8,6 +8,7 @@
 import { SpriteService } from './services/sprite_service.js';
 import { DashboardUI } from './ui/dashboard.js';
 import { SimulatorService } from './services/simulator_service.js';
+import { EditorUI } from './ui/editor.js';
 import './components/spriter-player.js';
 
 class App {
@@ -22,6 +23,9 @@ class App {
                 requests: '.metric:nth-child(3) div'
             }
         });
+
+        this.editorUI = new EditorUI(this.spriteService);
+        this.editor = this.editorUI; // Facade helper
 
         // Simulator (initialized adapter)
         this.simulatorService = new SimulatorService('sim-canvas');
@@ -80,6 +84,14 @@ class App {
                 document.getElementById('library-view').classList.remove('hidden');
                 this.simulator.stop();
                 this.loadLibraryContent(params ? params.spriteId : null);
+            } else if (page === 'editor') {
+                document.getElementById('editor-view').classList.remove('hidden');
+                this.simulator.stop();
+                if (params && params.spriteId) {
+                    this.editorUI.loadSprite(params.spriteId);
+                } else {
+                    this.editorUI.render(); // Show "No Sprite Selected"
+                }
             } else {
                 // Fallback
                 console.warn("View not found for:", page);

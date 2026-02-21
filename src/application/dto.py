@@ -15,3 +15,7 @@ class AddVersionRequest(BaseModel):
     metadata: dict = {}
     animations: list[Animation] = []
     # File content is handled separately in the service via bytes
+
+
+class UpdateAnimationsRequest(BaseModel):
+    animations: list[Animation]

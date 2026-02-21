@@ -11,7 +11,11 @@ from fastapi import (
     status,
 )
 
-from ..application.dto import AddVersionRequest, CreateSpriteRequest
+from ..application.dto import (
+    AddVersionRequest,
+    CreateSpriteRequest,
+    UpdateAnimationsRequest,
+)
 from ..application.services import SpriteService
 from ..dependencies import get_current_user, get_current_user_optional, get_service
 from ..domain.entities import Sprite, SpriteVersion, User
@@ -89,3 +93,17 @@ async def add_sprite_version(
 
     version = await service.add_sprite_version(sprite_id, file_content, request)
     return version
+
+
+@router.patch("/sprites/{sprite_id}/animations", response_model=Sprite)
+async def patch_sprite_animations(
+    sprite_id: uuid.UUID,
+    request: UpdateAnimationsRequest,
+    service: SpriteService = Depends(get_service),
+    current_user: User = Depends(get_current_user),
+):
+    sprite = await service.get_sprite(sprite_id)
+    if sprite.author_id != current_user.id:
+        raise UnauthorizedError("You are not allowed to update this sprite")
+
+    return await service.update_sprite_animations(sprite_id, request)

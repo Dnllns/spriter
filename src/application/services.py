@@ -6,7 +6,7 @@ from PIL import Image
 from ..domain.entities import Sprite, SpriteVersion
 from ..domain.exceptions import SpriteNotFoundError
 from ..domain.ports import SpriteRepository, StoragePort
-from .dto import AddVersionRequest, CreateSpriteRequest
+from .dto import AddVersionRequest, CreateSpriteRequest, UpdateAnimationsRequest
 
 
 class SpriteService:
@@ -103,3 +103,21 @@ class SpriteService:
         return await self.repo.list(
             limit, offset, is_public=True if only_public else None
         )
+
+    async def update_sprite_animations(
+        self, sprite_id: uuid.UUID, request: UpdateAnimationsRequest
+    ) -> Sprite:
+        sprite = await self.repo.get(sprite_id)
+        if not sprite:
+            raise SpriteNotFoundError(sprite_id)
+
+        if not sprite.versions:
+            # Cannot update animations if no version exists
+            raise ValueError("Sprite has no versions to update")
+
+        # Update the latest version's animations
+        latest_version = sprite.versions[-1]
+        latest_version.animations = request.animations
+
+        await self.repo.save(sprite)
+        return sprite

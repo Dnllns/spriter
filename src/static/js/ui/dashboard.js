@@ -47,14 +47,18 @@ export class DashboardUI {
                         <span class="tag">▶ ${sprite.play_count || 0}</span>
                     </div>
                 </div>
-                <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
-                     <button class="btn" style="flex: 1; font-size: 0.8rem; padding: 0.5rem;" 
+                <div style="margin-top: 1rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem;">
+                     <button class="btn" style="font-size: 0.7rem; padding: 0.5rem 0.2rem;" 
                         onclick="window.app.loadSpriteInSimulator('${sprite.id}')">
                         Simulate
                      </button>
-                     <button class="btn" style="flex: 1; font-size: 0.8rem; padding: 0.5rem;" 
+                     <button class="btn" style="font-size: 0.7rem; padding: 0.5rem 0.2rem;" 
                         onclick="window.navigate('library', { spriteId: '${sprite.id}' })">
                         Inspect
+                     </button>
+                     <button class="btn" style="font-size: 0.7rem; padding: 0.5rem 0.2rem;" 
+                        onclick="window.navigate('editor', { spriteId: '${sprite.id}' })">
+                        Edit
                      </button>
                 </div>
             </div>
