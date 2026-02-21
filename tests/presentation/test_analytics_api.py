@@ -1,11 +1,12 @@
-import pytest
 import uuid
-from httpx import AsyncClient, ASGITransport
 
+import pytest
+from httpx import ASGITransport, AsyncClient
+
+from src.dependencies import get_repository
 from src.domain.entities import Sprite
 from src.infrastructure.memory_repo import InMemorySpriteRepository
 from src.main import app
-from src.dependencies import get_repository
 
 
 @pytest.fixture
@@ -37,7 +38,7 @@ async def test_track_sprite_play(override_repo, memory_repo):
     assert response.status_code == 202
     assert response.json()["status"] == "accepted"
 
-    # AsyncClient with ASGITransport executes BackgroundTasks before returning the response
-    # so we can safely check the result immediately.
+    # AsyncClient with ASGITransport executes BackgroundTasks before returning
+    # the response so we can safely check the result immediately.
     updated_sprite = await memory_repo.get(sprite_id)
     assert updated_sprite.play_count == 1
