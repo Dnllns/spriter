@@ -33,6 +33,9 @@
                 <li class="nav-item" onclick="navigate('simulator')">
                     Simulator
                 </li>
+                <li class="nav-item" onclick="navigate('editor')">
+                    Animation Editor
+                </li>
                 <li class="nav-item" onclick="navigate('settings')">
                     Settings
                 </li>
@@ -151,7 +154,7 @@
             </section>
         </main>
 
-        <!-- Library View (Added for Frame Categorization) -->
+        <!-- Library View -->
         <main id="library-view" class="view hidden main-content">
             <header class="header animate-fade-in">
                 <div class="page-title">
@@ -169,6 +172,14 @@
                     </div>
                 </div>
             </section>
+        </main>
+
+        <!-- Animation Editor View -->
+        <main id="editor-view" class="view hidden main-content">
+            <!-- Content rendered by EditorUI -->
+            <div style="text-align: center; padding: 4rem;">
+                <h2>Loading Editor...</h2>
+            </div>
         </main>
 
         <!-- Simulator View (Hidden by default) -->

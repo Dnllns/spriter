@@ -1,6 +1,6 @@
 [project]
 name = "spriter"
-version = "0.5.0"
+version = "0.6.0"
 description = "High-performance specialized repository for 2D sprites and animation sheets"
 readme = "README.md"
 requires-python = ">=3.11"

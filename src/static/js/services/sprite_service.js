@@ -64,4 +64,15 @@ export class SpriteService {
         if (!response.ok) throw new Error("Failed to upload version");
         return await response.json();
     }
+    async updateAnimations(spriteId, animations) {
+        const response = await fetch(`${this.baseUrl}/sprites/${spriteId}/animations`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ animations })
+        });
+        if (!response.ok) throw new Error("Failed to update animations");
+        return await response.json();
+    }
 }

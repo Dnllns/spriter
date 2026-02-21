@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.6.0] - 2026-02-21
+
+### Added
+- **Animation Editor**: Full in-browser editor for creating and modifying sequences.
+- **Backend Persistence**: New PATCH endpoint for updating animation metadata.
+- **Improved UI**: "Edit" button on dashboard for direct sequence manipulation.
+
 ## [0.5.0] - 2026-02-21
 
 ### Added

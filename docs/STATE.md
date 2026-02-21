@@ -18,7 +18,7 @@ This document tracks the current status of the project across different dimensio
 - [x] **Authentication**: OIDC-ready architecture with `AuthenticatorPort` and `MockAuthenticator` (for dev).
 - [x] **CI/CD**: GitHub Actions workflows for Testing, Linting, Security Scanning (Bandit), and Type Checking (MyPy).
 - [x] **Documentation**: Automated Sphinx documentation build and deployment to GitHub Pages (Verified Live).
-- [x] **Versioning**: Bumped to `0.5.0` with strict semantic versioning.
+- [x] **Versioning**: Bumped to `0.6.0` with Animation Editor support.
 - [x] **Releases**: Automated GitHub Releases with `uv build` artifacts (v0.2.6 deployed).
 - [x] **Toolchain**: Migrated to `uv` for all workflows and local development.
 - [x] **Security**: Enabled `CodeQL` scanning and `Dependabot` updates.
@@ -49,11 +49,12 @@ This document tracks the current status of the project across different dimensio
 - [x] **Analytics**: Implement a new `AnalyticsService` to track plays of embedded sprites [HU-009].
 - [x] **Frame Browser**: Implement a UI section to browse and manage individual frames per sprite [HU-010].
 - [x] **Privacy Logic**: Enforce `is_public` filtering in API endpoints [HU-008].
-- [x] **Versioning**: Bumped to `0.5.0`.
+- [x] **Animation Editor**: Create and edit sequences in-browser (`HU-011`).
+- [x] **Versioning**: Bumped to `0.6.0`.
 
 ### Next Actionable Steps
 1. **Flashy Landing Page**: Design and implement a premium landing page with hero sections in `src/templates/landing.html`.
-2. **Animation Editor**: Implement basic in-browser animation sequence editing in `src/static/js/ui/editor.js`.
+2. **Persistence Refinement**: Ensure database consistency when many versions exist.
 
 ### Quality Assurance
 - [ ] Pipeline Green: Verify using `gh run list`.
